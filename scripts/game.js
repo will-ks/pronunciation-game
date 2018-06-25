@@ -4,6 +4,10 @@ function Game(playerName) {
   this.player = new Player(playerName);
 }
 
+Game.prototype.getSentences = function(num) {
+  this.sentences = getRandomSentences(num);
+};
+
 Game.prototype.fillInData = function() {
   document.getElementById("player-name").innerText = this.player.name;
   document.getElementById("player-score").innerText = this.player.score;
