@@ -16,6 +16,7 @@ Game.prototype.fillInData = function() {
   document.querySelector(
     "#target-sentence p"
   ).innerText = this.currentSentence.sentence;
+  document.querySelector("#input-sentence p").innerText = "";
 };
 
 Game.prototype.startGame = function() {
@@ -31,4 +32,27 @@ Game.prototype.nextQuestion = function() {
     this.currentSentence = this.sentences[this.currentSentenceNum];
     this.fillInData();
   }
+};
+
+Game.prototype.diffStrings = function(string1, string2) {
+  (color = ""), (span = null);
+
+  var diff = JsDiff.diffChars(string1, string2, (ignoreCase = true)),
+    display = document.getElementById("input-card-body"),
+    fragment = document.createDocumentFragment();
+
+  diff.forEach(function(part) {
+    // green for additions, red for deletions
+    // grey for common parts
+    color = part.added ? "#DD4B39" : part.removed ? "black" : "#33B5E5";
+    span = document.createElement("span");
+    span.style.color = color;
+    if (!part.removed) {
+      span.appendChild(document.createTextNode(part.value));
+      fragment.appendChild(span);
+    }
+  });
+
+  display.innerHTML = "";
+  display.appendChild(fragment);
 };

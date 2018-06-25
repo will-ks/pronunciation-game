@@ -62,7 +62,7 @@ function main() {
     <div class="row m-3">
       <div class="col">
         <div class="card" id="input-sentence">
-          <div class="card-body ">
+          <div class="card-body" id="input-card-body">
             <p class="card-text text-center ">foo</p>
 
           </div>

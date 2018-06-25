@@ -16,13 +16,19 @@ Player.prototype.startListening = function() {
   }
 };
 
+Player.prototype.cleanString = function(string) {
+  // strip out punctuation, convert to lowercase
+  return string;
+};
+
 Player.prototype.handleVoiceInput = function(phrase, phrases) {
   console.log("I think the user said: ", phrases[0]);
   console.log("But then again, it could be any of the following: ", phrases);
 
-  var inputCard = document.querySelector("#input-sentence p");
+  window.game.diffStrings(window.game.currentSentence.sentence, phrases[0]);
+  // var inputCard = document.querySelector("#input-sentence p");
 
-  if (inputCard) {
-    inputCard.innerText = phrases[0];
-  }
+  // if (inputCard) {
+  //   inputCard.innerText = phrases[0];
+  // }
 };
