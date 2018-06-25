@@ -79,6 +79,11 @@ function main() {
 
     gameContainer.innerHTML = HTML;
 
+    var speakBtn = document.getElementById("speak-button");
+    speakBtn.addEventListener("click", function() {
+      window.game.player.startListening();
+    });
+
     var continueBtn = document.getElementById("continue-button");
     continueBtn.addEventListener("click", function() {
       window.game.nextQuestion();
