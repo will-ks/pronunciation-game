@@ -36,7 +36,7 @@ function main() {
   function buildGame() {
     var HTML = `<div class="row m-3">
       <div class="col col-6">
-        <h1>Name</h1>
+        <h1 id="player-name">Name</h1>
       </div>
       <div class="col col-6 text-right">
         <h1>0000</h1>
@@ -77,6 +77,8 @@ function main() {
     var gameContainer = getGameContainer();
 
     gameContainer.innerHTML = HTML;
+
+    document.getElementById("player-name").innerText = window.player.name;
   }
 
   function buildGameOver() {
@@ -94,8 +96,8 @@ function main() {
   }
 
   function startGame(name) {
+    window.player = new Player(name);
     buildGame();
-    var player = new Player(name);
   }
 
   // Start by building splash screen
