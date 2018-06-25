@@ -26,7 +26,7 @@ Game.prototype.startGame = function() {
 };
 
 Game.prototype.nextQuestion = function() {
-  if (this.currentSentenceNum < this.gameLength) {
+  if (this.currentSentenceNum < this.gameLength - 1) {
     this.currentSentenceNum++;
     this.currentSentence = this.sentences[this.currentSentenceNum];
     this.fillInData();

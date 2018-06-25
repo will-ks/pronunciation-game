@@ -27,6 +27,7 @@ function main() {
 
     var startButton = document.getElementById("start-button");
 
+    // Do we really want to add event listeners in this function?
     startButton.addEventListener("click", function() {
       var name = document.getElementById("name-input").value;
       startGame(name);
@@ -70,13 +71,18 @@ function main() {
     </div>
     <div class="row m-3">
       <div class="col text-center">
-        <button class="btn btn-primary btn-lg d-none" id="speak-button">Continue</button>
+        <button class="btn btn-primary btn-lg" id="continue-button">Continue</button>
       </div>
     </div>`;
 
     var gameContainer = getGameContainer();
 
     gameContainer.innerHTML = HTML;
+
+    var continueBtn = document.getElementById("continue-button");
+    continueBtn.addEventListener("click", function() {
+      window.game.nextQuestion();
+    });
   }
 
   function buildGameOver() {
