@@ -71,6 +71,20 @@ function main() {
 
     gameContainer.innerHTML = HTML;
   }
+
+  function buildGameOver() {
+    var HTML = `<div class="row m-3">
+      <div class="col text-center">
+        <h1>Game Over</h1>
+        <h2>You scored: 0000</h2>
+        <button class="btn btn-lg btn-primary">Play again?</button>
+      </div>
+    </div>`;
+
+    var gameContainer = getGameContainer();
+
+    gameContainer.innerHTML = HTML;
+  }
 }
 
 window.addEventListener("load", main);
