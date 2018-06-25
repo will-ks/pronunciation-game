@@ -121,7 +121,7 @@ function fillInData() {
   document.getElementById("player-score").innerText = window.game.player.score;
   document.querySelector("#target-sentence p").innerText =
     window.game.currentSentence.sentence;
-  document.querySelector("#input-sentence p").innerText = "";
+  document.getElementById("input-card-body").innerHTML = "";
 }
 
 function drawDiffedStrings(diff) {
