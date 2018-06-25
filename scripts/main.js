@@ -77,8 +77,6 @@ function main() {
     var gameContainer = getGameContainer();
 
     gameContainer.innerHTML = HTML;
-
-    document.getElementById("player-name").innerText = window.player.name;
   }
 
   function buildGameOver() {
@@ -95,9 +93,10 @@ function main() {
     gameContainer.innerHTML = HTML;
   }
 
-  function startGame(name) {
-    window.player = new Player(name);
+  function startGame(playerName) {
+    window.game = new Game(playerName);
     buildGame();
+    window.game.startGame();
   }
 
   // Start by building splash screen
