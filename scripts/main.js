@@ -17,13 +17,20 @@ function main() {
     <div class="col">
       <label for="name-input">Your name</label>
       <input type="text" id="name-input" class="form-control" placeholder="Enter your name">
-      <button class="btn btn-primary btn-lg">Start</button>
+      <button class="btn btn-primary btn-lg" id="start-button">Start</button>
     </div>
   </div>`;
 
     var gameContainer = getGameContainer();
 
     gameContainer.innerHTML = HTML;
+
+    var startButton = document.getElementById("start-button");
+
+    startButton.addEventListener("click", function() {
+      var name = document.getElementById("name-input").value;
+      startGame(name);
+    });
   }
 
   function buildGame() {
@@ -85,6 +92,14 @@ function main() {
 
     gameContainer.innerHTML = HTML;
   }
+
+  function startGame(name) {
+    buildGame();
+    var player = new Player(name);
+  }
+
+  // Start by building splash screen
+  buildSplash();
 }
 
 window.addEventListener("load", main);
