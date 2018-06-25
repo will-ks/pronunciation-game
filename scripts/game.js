@@ -6,6 +6,7 @@ function Game(playerName) {
 
 Game.prototype.fillInData = function() {
   document.getElementById("player-name").innerText = this.player.name;
+  document.getElementById("player-score").innerText = this.player.score;
 };
 
 Game.prototype.startGame = function() {

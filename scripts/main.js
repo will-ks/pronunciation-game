@@ -39,7 +39,7 @@ function main() {
         <h1 id="player-name">Name</h1>
       </div>
       <div class="col col-6 text-right">
-        <h1>0000</h1>
+        <h1 id="player-score">0000</h1>
       </div>
     </div>
 
