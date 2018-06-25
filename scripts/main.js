@@ -115,3 +115,34 @@ function main() {
 }
 
 window.addEventListener("load", main);
+
+function fillInData() {
+  document.getElementById("player-name").innerText = window.game.player.name;
+  document.getElementById("player-score").innerText = window.game.player.score;
+  document.querySelector("#target-sentence p").innerText =
+    window.game.currentSentence.sentence;
+  document.querySelector("#input-sentence p").innerText = "";
+}
+
+function drawDiffedStrings(diff) {
+  var color = "";
+  var span = null;
+
+  var displayDiv = document.getElementById("input-card-body");
+  var fragment = document.createDocumentFragment();
+
+  diff.forEach(function(part) {
+    // green for additions, red for deletions
+    // grey for common parts
+    color = part.added ? "#DD4B39" : part.removed ? "black" : "#33B5E5";
+    span = document.createElement("span");
+    span.style.color = color;
+    if (!part.removed) {
+      span.appendChild(document.createTextNode(part.value));
+      fragment.appendChild(span);
+    }
+  });
+
+  displayDiv.innerHTML = "";
+  displayDiv.appendChild(fragment);
+}

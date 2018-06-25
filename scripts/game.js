@@ -10,49 +10,31 @@ Game.prototype.getSentences = function(num) {
   this.sentences = getRandomSentences(num);
 };
 
-Game.prototype.fillInData = function() {
-  document.getElementById("player-name").innerText = this.player.name;
-  document.getElementById("player-score").innerText = this.player.score;
-  document.querySelector(
-    "#target-sentence p"
-  ).innerText = this.currentSentence.sentence;
-  document.querySelector("#input-sentence p").innerText = "";
-};
-
 Game.prototype.startGame = function() {
   var self = this;
   this.getSentences(this.gameLength);
   this.nextQuestion();
-  this.fillInData();
+  fillInData();
 };
 
 Game.prototype.nextQuestion = function() {
   if (this.currentSentenceNum < this.gameLength - 1) {
     this.currentSentenceNum++;
     this.currentSentence = this.sentences[this.currentSentenceNum];
-    this.fillInData();
+    fillInData();
   }
 };
 
+Game.prototype.cleanString = function(string) {
+  // Strip out punctuation with Regex and trim whitespace.
+  var regex = new RegExp(/[\.,-\/#!$%\^&\*;:{}=\-_`~()@\+\?><\[\]\+"'\\]/g);
+  return string.replace(regex, "").trim();
+};
+
 Game.prototype.diffStrings = function(string1, string2) {
-  (color = ""), (span = null);
+  var cleanString1 = this.cleanString(string1);
+  var cleanString2 = this.cleanString(string2);
 
-  var diff = JsDiff.diffChars(string1, string2, (ignoreCase = true)),
-    display = document.getElementById("input-card-body"),
-    fragment = document.createDocumentFragment();
-
-  diff.forEach(function(part) {
-    // green for additions, red for deletions
-    // grey for common parts
-    color = part.added ? "#DD4B39" : part.removed ? "black" : "#33B5E5";
-    span = document.createElement("span");
-    span.style.color = color;
-    if (!part.removed) {
-      span.appendChild(document.createTextNode(part.value));
-      fragment.appendChild(span);
-    }
-  });
-
-  display.innerHTML = "";
-  display.appendChild(fragment);
+  var diff = JsDiff.diffChars(cleanString1, cleanString2, (ignoreCase = true));
+  drawDiffedStrings(diff);
 };
