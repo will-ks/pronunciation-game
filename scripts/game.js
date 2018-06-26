@@ -65,7 +65,7 @@ Game.prototype.nextQuestion = function() {
     drawProgressBar(this.getProgressPercent());
     enableSpeakButton();
   } else {
-    buildGameOver();
+    buildGameOver(this.player.score);
   }
 };
 
@@ -114,7 +114,7 @@ Game.prototype.getAvailableSpeechSynthesisLanguages = function() {
   var supported = [];
   var voices = speechSynthesis.getVoices();
   voices.forEach(function(voice) {
-    supported.push(voice.slice(0, 2));
+    supported.push(voice.lang.slice(0, 2));
   });
   return supported;
 };

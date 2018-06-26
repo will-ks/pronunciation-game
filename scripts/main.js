@@ -6,6 +6,7 @@ var revealPronunciationBtn;
 var nextBtn;
 var startButton;
 var gameContainer;
+var finalScoreString;
 
 function main() {
   gameContainer = document.getElementById("game-container");
@@ -128,16 +129,22 @@ function buildGame() {
   });
 }
 
-function buildGameOver() {
+function buildGameOver(score) {
   var HTML = `<div class="row m-3">
   <div class="col text-center">
   <h1>Game Over</h1>
-  <h2>You scored: 0000</h2>
+  <h2 id="final-score">You scored: 0000</h2>
   <button class="btn btn-lg btn-primary">Play again?</button>
   </div>
   </div>`;
 
   gameContainer.innerHTML = HTML;
+  drawFinalScore(score);
+}
+
+function drawFinalScore(score) {
+  finalScoreString = document.getElementById("final-score");
+  finalScoreString.innerText = "You scored: " + score;
 }
 
 function handleStartButtonClicked(nameInputValue) {
