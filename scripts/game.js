@@ -36,9 +36,14 @@ Game.prototype.startGame = function() {
 
 Game.prototype.handleContinueButton = function() {
   toggleContinueButtons();
+  if (!this.checkIfVoiceAvailable(this.currentSentence.bcp47)) {
+    disableRevealPronunciationButton();
+  }
 };
 
-Game.prototype.handleRevealPronunciationButton = function() {};
+Game.prototype.handleRevealPronunciationButton = function() {
+  this.speakSentence(this.currentSentence.sentence, this.currentSentence.bcp47);
+};
 
 Game.prototype.handleNextButton = function() {
   this.nextQuestion();
@@ -110,7 +115,16 @@ Game.prototype.getAvailableSpeechSynthesisLanguages = function() {
   var voices = speechSynthesis.getVoices();
   voices.forEach(function(voice) {
     var code = voice.lang.split("-");
-    supported.push(code);
+    supported.push(code[0]);
   });
   return supported;
+};
+
+Game.prototype.checkIfVoiceAvailable = function(languageBcp47String) {
+  var supported = this.getAvailableSpeechSynthesisLanguages();
+  if (supported.indexOf(languageBcp47String) > -1) {
+    return true;
+  } else {
+    return false;
+  }
 };

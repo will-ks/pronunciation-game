@@ -149,6 +149,7 @@ function toggleContinueButtons() {
   continueBtn.classList.toggle("d-none");
   nextBtn.classList.toggle("d-none");
   revealPronunciationBtn.classList.toggle("d-none");
+  enableRevealPronunciationButton();
 }
 
 function fillInData(name, score, sentence, language, allowedAttempts) {
@@ -200,9 +201,19 @@ function disableSpeakButton() {
   speakBtn.classList.add("btn-secondary");
 }
 
+function disableRevealPronunciationButton() {
+  revealPronunciationBtn.setAttribute("disabled", true);
+  revealPronunciationBtn.classList.add("btn-secondary");
+}
+
 function enableSpeakButton() {
   speakBtn.removeAttribute("disabled");
   speakBtn.classList.remove("btn-secondary");
+}
+
+function enableRevealPronunciationButton() {
+  revealPronunciationBtn.removeAttribute("disabled");
+  revealPronunciationBtn.classList.remove("btn-secondary");
 }
 
 function drawListening() {
