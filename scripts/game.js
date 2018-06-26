@@ -35,6 +35,19 @@ Game.prototype.diffStrings = function(string1, string2) {
   var cleanString1 = this.cleanString(string1);
   var cleanString2 = this.cleanString(string2);
 
-  var diff = JsDiff.diffChars(cleanString1, cleanString2, (ignoreCase = true));
-  drawDiffedStrings(diff);
+  var diff = JsDiff.diffWordsWithSpace(
+    cleanString1,
+    cleanString2,
+    (ignoreCase = true)
+  );
+  return diff;
+};
+
+Game.prototype.calculateDiffScore = function(string1, string2) {
+  if (string1 && string2) {
+    var similarity = dice.coefficient(string1, string2);
+    return Math.floor(similarity * 100);
+  } else {
+    return null;
+  }
 };

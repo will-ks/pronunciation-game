@@ -20,5 +20,14 @@ Player.prototype.handleVoiceInput = function(phrase, phrases) {
   console.log("I think the user said: ", phrases[0]);
   console.log("But then again, it could be any of the following: ", phrases);
 
-  window.game.diffStrings(window.game.currentSentence.sentence, phrases[0]);
+  var diff = window.game.diffStrings(
+    window.game.currentSentence.sentence,
+    phrases[0]
+  );
+  var score = window.game.calculateDiffScore(
+    window.game.currentSentence.sentence,
+    phrases[0]
+  );
+  drawDiffedStrings(diff);
+  drawScore(score);
 };

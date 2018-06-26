@@ -48,8 +48,8 @@ function main() {
       <div class="col">
         <div class="card" id="target-sentence">
           <!-- <img class="card-img-top" src="https://cdn.rawgit.com/hjnilsson/country-flags/master/svg/ad.svg" alt="Andorra flag "></img> -->
-          <div class="card-body ">
-            <p class="card-text text-center ">foo</p>
+          <div class="card-body text-center">
+            <p class="card-text">foo</p>
           </div>
         </div>
       </div>
@@ -62,9 +62,12 @@ function main() {
     <div class="row m-3">
       <div class="col">
         <div class="card" id="input-sentence">
-          <div class="card-body" id="input-card-body">
-            <p class="card-text text-center ">foo</p>
+          <div class="card-body text-center" id="input-card-body">
+            <p class="card-text">foo</p>
 
+          </div>
+          <div class="card-footer text-muted text-center" id="similarity-score">
+          <p class="card-text">0</p>
           </div>
         </div>
       </div>
@@ -145,4 +148,8 @@ function drawDiffedStrings(diff) {
 
   displayDiv.innerHTML = "";
   displayDiv.appendChild(fragment);
+}
+
+function drawScore(score) {
+  document.querySelector("#similarity-score p").innerText = score;
 }
