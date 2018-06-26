@@ -12,19 +12,19 @@ function getGameContainer() {
 }
 
 function buildSplash() {
-  var HTML = `<div class="row">
-  <div class="col">
-  <h1>Amazing Game</h1>
-  </div>
+  var HTML = `
+  <div class="row m-3">
+    <div class="col">
+      <h1>Amazing Game</h1>
+    </div>
   </div>
   
-  <div class="row">
-  
-  <div class="col">
-  <label for="name-input">Your name</label>
-  <input type="text" id="name-input" class="form-control" placeholder="Enter your name">
-  <button class="btn btn-primary btn-lg" id="start-button">Start</button>
-  </div>
+  <div class="row m-3">
+    <div class="col">
+      <label for="name-input">Your name</label>
+      <input type="text" id="name-input" class="form-control" placeholder="Enter your name">
+      <button class="btn btn-primary btn-lg mt-3" id="start-button">Start</button>
+    </div>
   </div>`;
 
   var gameContainer = getGameContainer();
@@ -41,7 +41,8 @@ function buildSplash() {
 }
 
 function buildGame() {
-  var HTML = `<div class="row m-3">
+  var HTML = `
+  <div class="row m-3">
   <div class="col col-6">
   <h1 id="player-name">Name</h1>
   </div>
