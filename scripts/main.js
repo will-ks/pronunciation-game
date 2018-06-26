@@ -36,7 +36,7 @@ function buildSplash() {
   // Do we really want to add event listeners in this function?
   startButton.addEventListener("click", function() {
     var name = document.getElementById("name-input").value;
-    startGame(name);
+    handleStartButtonClicked(name);
   });
 }
 
@@ -125,10 +125,11 @@ function buildGameOver() {
   gameContainer.innerHTML = HTML;
 }
 
-function startGame(playerName) {
-  window.game = new Game(playerName);
-  buildGame();
+function handleStartButtonClicked(nameInputValue) {
+  window.game = new Game();
   var game = window.game;
+  game.createPlayer(nameInputValue);
+  buildGame();
   game.startGame();
 }
 

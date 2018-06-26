@@ -1,5 +1,5 @@
-function Player(name) {
-  this.name = name;
+function Player() {
+  this.name = "";
   this.score = 0;
   this.currentAttempt = 1;
   this.currentScore = 0;
@@ -8,6 +8,10 @@ function Player(name) {
 var game = null;
 Player.prototype.handleGameStart = function(g) {
   game = g;
+};
+
+Player.prototype.setName = function(name) {
+  this.name = name;
 };
 
 Player.prototype.handleSpeakButtonClick = function() {

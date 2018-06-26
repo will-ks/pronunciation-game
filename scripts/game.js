@@ -1,11 +1,15 @@
-function Game(playerName) {
+function Game() {
   this.sentences = [];
   this.currentSentenceNum = 0;
   this.currentSentence;
   this.gameLength = 10;
-  this.player = new Player(playerName);
   this.allowedAttempts = 3;
 }
+
+Game.prototype.createPlayer = function(name) {
+  this.player = new Player();
+  this.player.setName(name);
+};
 
 Game.prototype.getSentences = function(num) {
   this.sentences = getRandomSentences(num);
