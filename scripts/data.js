@@ -54,6 +54,34 @@ var languages = [
       "I want you to get off my back.",
       "Don't take things so seriously."
     ]
+  },
+  {
+    name: "Italian",
+    bcp47: "it",
+    sentences: [
+      "Preferirebbe andare allo zoo o andare al cinema?",
+      "Mi stavo chiedendo se vi sareste fatte vive oggi.",
+      "Lui produce giocattoli in Cina."
+    ],
+    translations: [
+      "Would you prefer to go to the zoo or go to a movie?",
+      "I was wondering if you were going to show up today.",
+      "He manufactures toys in China."
+    ]
+  },
+  {
+    name: "Danish",
+    bcp47: "da",
+    sentences: [
+      "Hun får altid sin vilje.",
+      "Når man taler om solen, så skinner den.",
+      "Taler du fransk hver dag?"
+    ],
+    translations: [
+      "She always gets her own way.",
+      "Speak of the devil and he is sure to appear.",
+      "Do you speak French every day?"
+    ]
   }
 ];
 
