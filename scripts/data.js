@@ -31,7 +31,7 @@ function getRandomSentences(num) {
         Math.floor(Math.random() * randomLanguage.sentences.length)
       ];
     array.push({
-      name: randomLanguage.name,
+      language: randomLanguage.name,
       bcp47: randomLanguage.bcp47,
       sentence: randomSentence
     });

@@ -51,12 +51,16 @@ function main() {
           <div class="card-body text-center">
             <p class="card-text">foo</p>
           </div>
+          <div class="card-footer text-muted text-center" id="target-language">
+          <p class="card-text">English</p>
+          </div>
         </div>
       </div>
     </div>
     <div class="row m-3">
       <div class="col text-center">
         <button class="btn btn-primary btn-lg" id="speak-button">Speak</button>
+        <p class="m-3" id="attempts-string">Attempt 1 of 3</p>
       </div>
     </div>
     <div class="row m-3">
@@ -84,7 +88,7 @@ function main() {
 
     var speakBtn = document.getElementById("speak-button");
     speakBtn.addEventListener("click", function() {
-      window.game.player.startListening();
+      window.game.player.handleSpeakButtonClick();
     });
 
     var continueBtn = document.getElementById("continue-button");
@@ -110,7 +114,8 @@ function main() {
   function startGame(playerName) {
     window.game = new Game(playerName);
     buildGame();
-    window.game.startGame();
+    var game = window.game;
+    game.startGame();
   }
 
   // Start by building splash screen
@@ -120,11 +125,16 @@ function main() {
 window.addEventListener("load", main);
 
 function fillInData() {
-  document.getElementById("player-name").innerText = window.game.player.name;
-  document.getElementById("player-score").innerText = window.game.player.score;
+  document.getElementById("player-name").innerText = game.player.name;
+  document.getElementById("player-score").innerText = game.player.score;
   document.querySelector("#target-sentence p").innerText =
-    window.game.currentSentence.sentence;
+    game.currentSentence.sentence;
   document.getElementById("input-card-body").innerHTML = "";
+  document.getElementById("target-language").innerText =
+    game.currentSentence.language;
+  document.querySelector("#similarity-score p").innerText = "0";
+  document.getElementById("attempts-string").innerText =
+    "Attempt 1 of " + game.allowedAttempts;
 }
 
 function drawDiffedStrings(diff) {
@@ -152,4 +162,17 @@ function drawDiffedStrings(diff) {
 
 function drawScore(score) {
   document.querySelector("#similarity-score p").innerText = score;
+}
+
+function drawAttempts(attempts) {
+  document.getElementById("attempts-string").innerText =
+    "Attempt " + game.player.currentAttempt + " of " + game.allowedAttempts;
+}
+
+function drawListening() {
+  document.getElementById("speak-button").classList.add("btn-success");
+}
+
+function drawListeningStopped() {
+  document.getElementById("speak-button").classList.remove("btn-success");
 }

@@ -4,6 +4,7 @@ function Game(playerName) {
   this.currentSentence;
   this.gameLength = 10;
   this.player = new Player(playerName);
+  this.allowedAttempts = 3;
 }
 
 Game.prototype.getSentences = function(num) {
@@ -15,6 +16,7 @@ Game.prototype.startGame = function() {
   this.getSentences(this.gameLength);
   this.nextQuestion();
   fillInData();
+  this.player.handleGameStart(this);
 };
 
 Game.prototype.nextQuestion = function() {
