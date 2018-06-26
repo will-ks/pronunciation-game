@@ -86,19 +86,35 @@ var languages = [
 ];
 
 function getRandomSentences(num) {
+  // Copy the languages array as we are going to remove sentences from it as we go to avoid duplicates
+  var languagesCopy = languages.slice(0);
   var array = [];
   for (var i = 0; i < num; i++) {
-    var randomLanguage =
-      languages[Math.floor(Math.random() * languages.length)];
+    var randomLanguageNumber = [
+      Math.floor(Math.random() * languagesCopy.length)
+    ];
+    var randomLanguage = languagesCopy[randomLanguageNumber];
     var randomSentenceNumber = Math.floor(
       Math.random() * randomLanguage.sentences.length
     );
+
+    // Add the randomly selected sentence to the game's array
     array.push({
       language: randomLanguage.name,
       bcp47: randomLanguage.bcp47,
       sentence: randomLanguage.sentences[randomSentenceNumber],
       translation: randomLanguage.translations[randomSentenceNumber]
     });
+
+    // Splice the selected sentence and translation out of the array copy
+    languagesCopy[randomLanguageNumber].sentences.splice(
+      randomSentenceNumber,
+      1
+    );
+    languagesCopy[randomLanguageNumber].translations.splice(
+      randomSentenceNumber,
+      1
+    );
   }
   return array;
 }
