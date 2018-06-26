@@ -114,8 +114,7 @@ Game.prototype.getAvailableSpeechSynthesisLanguages = function() {
   var supported = [];
   var voices = speechSynthesis.getVoices();
   voices.forEach(function(voice) {
-    var code = voice.lang.split("-");
-    supported.push(code[0]);
+    supported.push(voice.slice(0, 2));
   });
   return supported;
 };

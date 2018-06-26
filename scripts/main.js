@@ -11,6 +11,8 @@ function main() {
   gameContainer = document.getElementById("game-container");
   // Start by building splash screen
   buildSplash();
+  // The first time speechSynthesis.getVoices is called on Chrome for Android, it returns no results as voices are loaded asynchronously. Calling it here so it's ready when needed.
+  speechSynthesis.getVoices();
 }
 
 window.addEventListener("load", main);
