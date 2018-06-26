@@ -62,10 +62,21 @@ Player.prototype.handleVoiceInput = function(phrase, phrases) {
   drawCurrentScore(score);
   this.currentScore = score;
   this.currentAttempt++;
-  if (this.currentAttempt <= game.allowedAttempts) {
-    drawAttempts(this.currentAttempt);
+
+  if (this.currentScore === 100) {
+    drawAttemptString("Perfect!");
+    game.handleContinueButton();
+  } else if (this.currentScore > 80) {
+    drawAttemptString("That's pretty close! You can try again or continue.");
+    showContinueButton();
+  } else if (this.currentScore > 40) {
+    drawAttemptString("Not too bad! You can try again or continue.");
+    showContinueButton();
+  } else if (this.currentAttempt <= game.allowedAttempts) {
+    drawAttemptString("Hmm, pretty weak. Try again!");
   } else {
-    disableSpeakButton();
+    drawAttemptString("Well that sucked. Let's move on.");
+    game.handleContinueButton();
   }
 };
 

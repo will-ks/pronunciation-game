@@ -69,12 +69,7 @@ function buildGame() {
   </div>
   </div>
   </div>
-  <div class="row m-3">
-  <div class="col text-center">
-  <button class="btn btn-primary btn-lg" id="speak-button">Speak</button>
-  <p class="m-3" id="attempts-string">Attempt 1 of 3</p>
-  </div>
-  </div>
+
   <div class="row m-3">
   <div class="col">
   <div class="card" id="input-sentence">
@@ -88,6 +83,15 @@ function buildGame() {
   </div>
   </div>
   </div>
+
+  <div class="row m-3">
+  <div class="col text-center">
+  <button class="btn btn-primary btn-lg" id="speak-button">Speak</button>
+  <p class="m-3" id="attempts-string"></p>
+  </div>
+  </div>
+
+
   <div class="row m-3">
   <div class="col text-center">
   <button class="btn btn-primary btn-lg" id="continue-button">Continue</button>
@@ -160,10 +164,21 @@ function handleStartButtonClicked(nameInputValue) {
   game.startGame();
 }
 
-function toggleContinueButtons() {
-  continueBtn.classList.toggle("d-none");
-  nextBtn.classList.toggle("d-none");
-  revealPronunciationBtn.classList.toggle("d-none");
+// function toggleContinueButtons() {
+//   continueBtn.classList.toggle("d-none");
+//   nextBtn.classList.toggle("d-none");
+//   revealPronunciationBtn.classList.toggle("d-none");
+//   enableRevealPronunciationButton();
+// }
+
+function hideNextButtons() {
+  nextBtn.classList.add("d-none");
+  revealPronunciationBtn.classList.add("d-none");
+}
+
+function showNextButtons() {
+  nextBtn.classList.remove("d-none");
+  revealPronunciationBtn.classList.remove("d-none");
   enableRevealPronunciationButton();
 }
 
@@ -174,8 +189,7 @@ function fillInData(name, score, sentence, language, allowedAttempts) {
   document.getElementById("input-card-body").innerHTML = "";
   document.getElementById("target-language").innerText = language;
   document.querySelector("#similarity-score p").innerText = "0";
-  document.getElementById("attempts-string").innerText =
-    "Attempt 1 of " + allowedAttempts;
+  document.getElementById("attempts-string").innerText = "";
 }
 
 function drawDiffedStrings(diff) {
@@ -206,9 +220,13 @@ function drawCurrentScore(score) {
   document.querySelector("#similarity-score p").innerText = score;
 }
 
-function drawAttempts(attempts) {
-  document.getElementById("attempts-string").innerText =
-    "Attempt " + game.player.currentAttempt + " of " + game.allowedAttempts;
+// function drawAttempts(attempts) {
+//   document.getElementById("attempts-string").innerText =
+//     "Attempt " + game.player.currentAttempt + " of " + game.allowedAttempts;
+// }
+
+function drawAttemptString(string) {
+  document.getElementById("attempts-string").innerText = string;
 }
 
 function disableSpeakButton() {
@@ -229,6 +247,14 @@ function enableSpeakButton() {
 function enableRevealPronunciationButton() {
   revealPronunciationBtn.removeAttribute("disabled");
   revealPronunciationBtn.classList.remove("btn-secondary");
+}
+
+function hideContinueButton() {
+  continueBtn.classList.add("d-none");
+}
+
+function showContinueButton() {
+  continueBtn.classList.remove("d-none");
 }
 
 function drawListening() {

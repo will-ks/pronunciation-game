@@ -35,7 +35,9 @@ Game.prototype.startGame = function() {
 };
 
 Game.prototype.handleContinueButton = function() {
-  toggleContinueButtons();
+  hideContinueButton();
+  showNextButtons();
+  disableSpeakButton();
   if (!this.checkIfVoiceAvailable(this.currentSentence.bcp47)) {
     disableRevealPronunciationButton();
   }
@@ -51,7 +53,7 @@ Game.prototype.handleRevealPronunciationButton = function() {
 
 Game.prototype.handleNextButton = function() {
   this.nextQuestion();
-  toggleContinueButtons();
+  hideNextButtons();
 };
 
 Game.prototype.nextQuestion = function() {
@@ -68,6 +70,7 @@ Game.prototype.nextQuestion = function() {
     );
     drawProgressBar(this.getProgressPercent());
     enableSpeakButton();
+    hideContinueButton();
   } else {
     buildGameOver(this.player.score);
   }
