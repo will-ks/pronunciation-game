@@ -41,8 +41,7 @@ function buildSplash() {
 }
 
 function buildGame() {
-  var HTML = `
-  <div class="row m-3">
+  var HTML = `<div class="row m-3">
   <div class="col col-6">
   <h1 id="player-name">Name</h1>
   </div>

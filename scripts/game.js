@@ -56,10 +56,16 @@ Game.prototype.nextQuestion = function() {
 Game.prototype.cleanString = function(string) {
   // Strip out punctuation with Regex and trim whitespace.
   var regex = new RegExp(/[\.,-\/#!$%\^&\*;:{}=\-_`~()@\+\?><\[\]\+"'\\]/g);
-  return string.replace(regex, "").trim();
+  return string
+    .replace(regex, "")
+    .trim()
+    .toLowerCase();
 };
 
 Game.prototype.diffStrings = function(string1, string2) {
+  if (!(string1 && string2)) {
+    return null;
+  }
   var cleanString1 = this.cleanString(string1);
   var cleanString2 = this.cleanString(string2);
 
@@ -72,10 +78,12 @@ Game.prototype.diffStrings = function(string1, string2) {
 };
 
 Game.prototype.calculateDiffScore = function(string1, string2) {
-  if (string1 && string2) {
-    var similarity = dice.coefficient(string1, string2);
-    return Math.floor(similarity * 100);
-  } else {
+  if (!(string1 && string2)) {
     return null;
   }
+
+  var cleanString1 = this.cleanString(string1);
+  var cleanString2 = this.cleanString(string2);
+  var similarity = dice.coefficient(cleanString1, cleanString2);
+  return Math.floor(similarity * 100);
 };
