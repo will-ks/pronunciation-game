@@ -34,6 +34,17 @@ Game.prototype.startGame = function() {
   this.player.handleGameStart(this);
 };
 
+Game.prototype.handleContinueButton = function() {
+  toggleContinueButtons();
+};
+
+Game.prototype.handleRevealPronunciationButton = function() {};
+
+Game.prototype.handleNextButton = function() {
+  this.nextQuestion();
+  toggleContinueButtons();
+};
+
 Game.prototype.nextQuestion = function() {
   this.player.finishSentence();
   this.currentSentenceNum++;
@@ -86,4 +97,20 @@ Game.prototype.calculateDiffScore = function(string1, string2) {
   var cleanString2 = this.cleanString(string2);
   var similarity = dice.coefficient(cleanString1, cleanString2);
   return Math.floor(similarity * 100);
+};
+
+Game.prototype.speakSentence = function(sentence, languageBcp47String) {
+  var utterance = new SpeechSynthesisUtterance(sentence);
+  utterance.lang = languageBcp47String;
+  window.speechSynthesis.speak(utterance);
+};
+
+Game.prototype.getAvailableSpeechSynthesisLanguages = function() {
+  var supported = [];
+  var voices = speechSynthesis.getVoices();
+  voices.forEach(function(voice) {
+    var code = voice.lang.split("-");
+    supported.push(code);
+  });
+  return supported;
 };

@@ -1,15 +1,19 @@
 "use strict";
 
+var speakBtn;
+var continueBtn;
+var revealPronunciationBtn;
+var nextBtn;
+var startButton;
+var gameContainer;
+
 function main() {
+  gameContainer = document.getElementById("game-container");
   // Start by building splash screen
   buildSplash();
 }
 
 window.addEventListener("load", main);
-
-function getGameContainer() {
-  return document.getElementById("game-container");
-}
 
 function buildSplash() {
   var HTML = `
@@ -27,11 +31,9 @@ function buildSplash() {
     </div>
   </div>`;
 
-  var gameContainer = getGameContainer();
-
   gameContainer.innerHTML = HTML;
 
-  var startButton = document.getElementById("start-button");
+  startButton = document.getElementById("start-button");
 
   // Do we really want to add event listeners in this function?
   startButton.addEventListener("click", function() {
@@ -85,6 +87,8 @@ function buildGame() {
   <div class="row m-3">
   <div class="col text-center">
   <button class="btn btn-primary btn-lg" id="continue-button">Continue</button>
+  <button class="btn btn-primary btn-lg d-none" id="reveal-pronunciation-button">What should it sound like?</button>
+  <button class="btn btn-primary btn-lg d-none" id="next-button">Next</button>
   </div>
   </div>
   
@@ -96,18 +100,29 @@ function buildGame() {
   </div>
   </div>`;
 
-  var gameContainer = getGameContainer();
-
   gameContainer.innerHTML = HTML;
 
-  var speakBtn = document.getElementById("speak-button");
+  speakBtn = document.getElementById("speak-button");
+  continueBtn = document.getElementById("continue-button");
+  revealPronunciationBtn = document.getElementById(
+    "reveal-pronunciation-button"
+  );
+  nextBtn = document.getElementById("next-button");
+
   speakBtn.addEventListener("click", function() {
-    window.game.player.handleSpeakButtonClick();
+    game.player.handleSpeakButtonClick();
   });
 
-  var continueBtn = document.getElementById("continue-button");
   continueBtn.addEventListener("click", function() {
-    window.game.nextQuestion();
+    game.handleContinueButton();
+  });
+
+  revealPronunciationBtn.addEventListener("click", function() {
+    game.handleRevealPronunciationButton();
+  });
+
+  nextBtn.addEventListener("click", function() {
+    game.handleNextButton();
   });
 }
 
@@ -120,17 +135,20 @@ function buildGameOver() {
   </div>
   </div>`;
 
-  var gameContainer = getGameContainer();
-
   gameContainer.innerHTML = HTML;
 }
 
 function handleStartButtonClicked(nameInputValue) {
-  window.game = new Game();
-  var game = window.game;
+  var game = new Game();
   game.createPlayer(nameInputValue);
   buildGame();
   game.startGame();
+}
+
+function toggleContinueButtons() {
+  continueBtn.classList.toggle("d-none");
+  nextBtn.classList.toggle("d-none");
+  revealPronunciationBtn.classList.toggle("d-none");
 }
 
 function fillInData(name, score, sentence, language, allowedAttempts) {
@@ -178,13 +196,11 @@ function drawAttempts(attempts) {
 }
 
 function disableSpeakButton() {
-  var speakBtn = document.getElementById("speak-button");
   speakBtn.setAttribute("disabled", true);
   speakBtn.classList.add("btn-secondary");
 }
 
 function enableSpeakButton() {
-  var speakBtn = document.getElementById("speak-button");
   speakBtn.removeAttribute("disabled");
   speakBtn.classList.remove("btn-secondary");
 }

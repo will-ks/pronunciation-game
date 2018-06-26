@@ -29,7 +29,7 @@ var languages = [
   },
   {
     name: "Spanish",
-    bcp47: "es-ES",
+    bcp47: "es",
     sentences: [
       "Creo que la decisión es justa.",
       "Bajaron del árbol.",
@@ -43,7 +43,7 @@ var languages = [
   },
   {
     name: "German",
-    bcp47: "de-DE",
+    bcp47: "de",
     sentences: [
       "Es gibt keinen Grund zu der Annahme, dass Tom der Dieb ist.",
       "Rutsch mir doch den Buckel runter!",
