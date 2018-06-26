@@ -5,6 +5,7 @@ var continueBtn;
 var revealPronunciationBtn;
 var nextBtn;
 var startButton;
+var playAgainButton;
 var gameContainer;
 var finalScoreString;
 
@@ -134,12 +135,17 @@ function buildGameOver(score) {
   <div class="col text-center">
   <h1>Game Over</h1>
   <h2 id="final-score">You scored: 0000</h2>
-  <button class="btn btn-lg btn-primary">Play again?</button>
+  <button class="btn btn-lg btn-primary" id="play-again-btn">Play again?</button>
   </div>
   </div>`;
 
   gameContainer.innerHTML = HTML;
   drawFinalScore(score);
+  playAgainButton = document.getElementById("play-again-btn");
+
+  playAgainButton.addEventListener("click", function() {
+    game.handlePlayAgainButton();
+  });
 }
 
 function drawFinalScore(score) {

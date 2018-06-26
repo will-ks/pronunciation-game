@@ -41,6 +41,10 @@ Game.prototype.handleContinueButton = function() {
   }
 };
 
+Game.prototype.handlePlayAgainButton = function() {
+  buildSplash();
+};
+
 Game.prototype.handleRevealPronunciationButton = function() {
   this.speakSentence(this.currentSentence.sentence, this.currentSentence.bcp47);
 };
