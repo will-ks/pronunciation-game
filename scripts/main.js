@@ -145,17 +145,19 @@ function fillInData(name, score, sentence, language, allowedAttempts) {
 }
 
 function drawDiffedStrings(diff) {
-  var color = "";
-  var span = null;
-
   var displayDiv = document.getElementById("input-card-body");
   var fragment = document.createDocumentFragment();
 
   diff.forEach(function(part) {
     // Part added / removed / correct
-    color = part.added ? "#DD4B39" : part.removed ? "black" : "#33B5E5";
-    span = document.createElement("span");
-    span.style.color = color;
+    var colorClass = part.added
+      ? "text-danger"
+      : part.removed
+        ? "text-dark"
+        : "text-success";
+
+    var span = document.createElement("span");
+    span.classList.add(colorClass);
     if (!part.removed) {
       span.appendChild(document.createTextNode(part.value));
       fragment.appendChild(span);
