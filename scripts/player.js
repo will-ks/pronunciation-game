@@ -2,6 +2,7 @@ function Player(name) {
   this.name = name;
   this.score = 0;
   this.currentAttempt = 1;
+  this.currentScore = 0;
 }
 
 var game = null;
@@ -13,11 +14,11 @@ Player.prototype.handleSpeakButtonClick = function() {
   if (annyang.isListening()) {
     this.stopListening();
   } else {
-    this.startListening();
+    this.startListening(game.currentSentence.bcp47);
   }
 };
 
-Player.prototype.startListening = function() {
+Player.prototype.startListening = function(languageBcp47String) {
   var self = this;
 
   // Callback on result
@@ -26,7 +27,7 @@ Player.prototype.startListening = function() {
     self.stopListening();
   });
   // Set options
-  annyang.setLanguage("en-US");
+  annyang.setLanguage(languageBcp47String);
 
   // Callback on start - Fired as soon as the browser's Speech Recognition engine starts listening
   annyang.addCallback("start", function() {
@@ -48,18 +49,24 @@ Player.prototype.stopListening = function() {
 };
 
 Player.prototype.handleVoiceInput = function(phrase, phrases) {
-  console.log("I think the user said: ", phrases[0]);
+  console.log("I think the user said: ", phrase);
   console.log("But then again, it could be any of the following: ", phrases);
 
-  var diff = game.diffStrings(game.currentSentence.sentence, phrases[0]);
-  var score = game.calculateDiffScore(
-    game.currentSentence.sentence,
-    phrases[0]
-  );
+  var diff = game.diffStrings(game.currentSentence.sentence, phrase);
+  var score = game.calculateDiffScore(game.currentSentence.sentence, phrase);
   drawDiffedStrings(diff);
-  drawScore(score);
+  drawCurrentScore(score);
+  this.currentScore = score;
   this.currentAttempt++;
   if (this.currentAttempt <= game.allowedAttempts) {
     drawAttempts(this.currentAttempt);
+  } else {
+    disableSpeakButton();
   }
+};
+
+Player.prototype.finishSentence = function() {
+  this.currentAttempt = 1;
+  this.score += this.currentScore;
+  this.currentScore = 0;
 };

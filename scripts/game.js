@@ -11,19 +11,41 @@ Game.prototype.getSentences = function(num) {
   this.sentences = getRandomSentences(num);
 };
 
+Game.prototype.getProgressPercent = function() {
+  return Math.floor((this.currentSentenceNum / this.gameLength) * 100);
+};
+
 Game.prototype.startGame = function() {
   var self = this;
   this.getSentences(this.gameLength);
   this.nextQuestion();
-  fillInData();
+  fillInData(
+    this.player.name,
+    this.player.score,
+    this.currentSentence.sentence,
+    this.currentSentence.language,
+    this.allowedAttempts
+  );
+  drawProgressBar(this.getProgressPercent());
   this.player.handleGameStart(this);
 };
 
 Game.prototype.nextQuestion = function() {
-  if (this.currentSentenceNum < this.gameLength - 1) {
-    this.currentSentenceNum++;
-    this.currentSentence = this.sentences[this.currentSentenceNum];
-    fillInData();
+  this.player.finishSentence();
+  this.currentSentenceNum++;
+  this.currentSentence = this.sentences[this.currentSentenceNum];
+  if (this.currentSentenceNum < this.gameLength) {
+    fillInData(
+      this.player.name,
+      this.player.score,
+      this.currentSentence.sentence,
+      this.currentSentence.language,
+      this.allowedAttempts
+    );
+    drawProgressBar(this.getProgressPercent());
+    enableSpeakButton();
+  } else {
+    buildGameOver();
   }
 };
 
