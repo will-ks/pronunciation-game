@@ -2,20 +2,6 @@
 
 var languages = [
   {
-    name: "Afrikaans",
-    bcp47: "af",
-    sentences: [
-      "Ek hou van druiwe, maar kan nie te veel daarvan eet nie.",
-      "Ek moet my kamer opruim.",
-      "Hulle gee 'n paar tree vorentoe."
-    ],
-    translations: [
-      "I like grapes, but I can't eat too many of them.",
-      "I should clean my room.",
-      "They stepped a few paces forward."
-    ]
-  },
-  {
     name: "Czech",
     bcp47: "cs",
     sentences: [
@@ -83,6 +69,90 @@ var languages = [
       "She always gets her own way.",
       "Speak of the devil and he is sure to appear.",
       "Do you speak French every day?"
+    ]
+  },
+  {
+    name: "Estonian",
+    bcp47: "et",
+    sentences: [
+      "Tomi käed on räpased.",
+      "Päike on punane.",
+      "Kas teil õlut on?"
+    ],
+    translations: [
+      "Tom's hands are dirty.",
+      "The sun is red.",
+      "Do you have any beer?"
+    ]
+  },
+  {
+    name: "Finnish",
+    bcp47: "fi",
+    sentences: [
+      "Älä yritä tehdä kahta asiaa kerralla.",
+      "Muista, mitä kerroin sinulle!",
+      "Piilotteletko sinä jotakin?"
+    ],
+    translations: [
+      "Don't attempt two things at a time.",
+      "Remember what I tell you!",
+      "Are you hiding something?"
+    ]
+  },
+  {
+    name: "French",
+    bcp47: "fr",
+    sentences: [
+      "J'ai fait un rêve bizarre.",
+      "Où puis-je changer mon argent?",
+      "Elles veulent juste s'amuser."
+    ],
+    translations: [
+      "I had a weird dream.",
+      "Where can I get my money exchanged?",
+      "They just want to have fun."
+    ]
+  },
+  {
+    name: "Romanian",
+    bcp47: "ro",
+    sentences: [
+      "Trebuie să faci ce-ți spun.",
+      "Nu mai sunt lemne pentru foc.",
+      "Zâmbetele nu indică întotdeauna bucuria."
+    ],
+    translations: [
+      "You must do as I tell you.",
+      "There's no more firewood.",
+      "Smiles do not always indicate pleasure."
+    ]
+  },
+  {
+    name: "Polish",
+    bcp47: "pl",
+    sentences: [
+      "Z czego się tak cieszysz?",
+      "Ten sklep sprzedaje dzienniki i magazyny.",
+      "Czy Tom ci powiedział gdzie jest impreza?"
+    ],
+    translations: [
+      "Why are you so happy?",
+      "That shop sells newspapers and magazines.",
+      "Did Tom tell you where the party is?"
+    ]
+  },
+  {
+    name: "Catalan",
+    bcp47: "ca",
+    sentences: [
+      "En Tom acostuma a trucar noies.",
+      "Té dues classes al matí i una a l'horabaixa.",
+      "Ara he d'anar a aquella reunió."
+    ],
+    translations: [
+      "Tom is accustomed to calling up girls on the telephone.",
+      "He has two classes in the morning and one in the afternoon.",
+      "I need to get to this meeting now."
     ]
   }
 ];
