@@ -156,3 +156,23 @@ Game.prototype.checkIfVoiceAvailable = function(languageBcp47String) {
     return false;
   }
 };
+
+Game.prototype.translateString = function(string, lang) {
+  // Note: This is a temporary method using a disposable free API key. Will eventually be replaced when the app has a backend.
+  var stringURI = encodeURI(string);
+  fetch(
+    "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180627T143038Z.1e878579d0dfe5ce.cace0e83481e4da16a038b62e31825c4764bb8c5&text=" +
+      stringURI +
+      "&lang=" +
+      lang +
+      "-en",
+    {
+      method: "get"
+    }
+  )
+    .then(response => response.json())
+    .then(jsonData => drawTranslation(jsonData.text[0]))
+    .catch(err => {
+      //error block
+    });
+};

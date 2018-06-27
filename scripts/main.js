@@ -126,7 +126,7 @@ function buildGame() {
   
   </div>
   <div class="card-footer text-muted text-center" id="similarity-score">
-  <p class="card-text">0</p>
+  <p class="card-text"></p>
   </div>
   </div>
   </div>
@@ -238,7 +238,7 @@ function fillInData(name, score, sentence, language, allowedAttempts) {
   document.querySelector("#target-sentence p").innerText = sentence;
   document.getElementById("input-card-body").innerHTML = "";
   document.getElementById("target-language").innerText = language;
-  document.querySelector("#similarity-score p").innerText = "0";
+  document.querySelector("#similarity-score p").innerText = "";
   document.getElementById("attempts-string").innerText = "";
 }
 
@@ -284,6 +284,10 @@ function hideProgressBar() {
 
 function drawTimer() {
   document.getElementById("timer-display").innerText = game.timer;
+}
+
+function drawTranslation(translation) {
+  document.querySelector("#similarity-score p").innerText = translation;
 }
 
 function disableSpeakButton() {
