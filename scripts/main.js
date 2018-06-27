@@ -27,7 +27,7 @@ function buildSplash() {
   <div class="row m-3 text-center" id="title-screen-title">
     <div class="col">
       <h1>Pronuncio</h1>
-      <img src="/images/robot-face.svg" alt="Robot face">
+      <img src="images/robot-face.svg" alt="Robot face">
     </div>
   </div>
   
@@ -110,7 +110,7 @@ function buildGame() {
   <p class="card-text">foo</p>
   </div>
   <div class="card-footer text-muted text-center">
-  <img src="/images/flags/af.png" id="country-flag">
+  <img src="images/flags/af.png" id="country-flag">
   <span class="card-text mb-0" id="target-language">English</span>
   
   </div>
@@ -139,7 +139,7 @@ function buildGame() {
   </div>
 
   <div class="row m-3">
-  <div class="col text-center col-3"><img src="/images/robot-face.svg" alt="Robot face"></div>
+  <div class="col text-center col-3"><img src="images/robot-face.svg" alt="Robot face"></div>
   <div class="col text-center col-9"><div class="speech-bubble"><p class="m-3 text-light" id="attempts-string"></p></div></div>
   </div>
 
@@ -211,7 +211,7 @@ function drawFinalScore(score) {
 function drawFlag(bcp47) {
   document
     .getElementById("country-flag")
-    .setAttribute("src", "/images/flags/" + bcp47 + ".png");
+    .setAttribute("src", "images/flags/" + bcp47 + ".png");
 }
 
 function handleStartButtonClicked(nameInputValue, option, lang) {
