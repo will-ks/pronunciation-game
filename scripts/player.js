@@ -60,7 +60,7 @@ Player.prototype.handleVoiceInput = function(phrase, phrases) {
   this.currentAttempt++;
 
   // Translate attempt, if it is not perfect. If it is, use the predefined translation.
-  if (!this.currentScore === 100) {
+  if (!(this.currentScore === 100)) {
     game.translateString(phrase, game.currentSentence.bcp47);
   } else {
     drawTranslation(game.currentSentence.translation);
