@@ -80,8 +80,14 @@ Player.prototype.handleVoiceInput = function(phrase, phrases) {
   }
 };
 
-Player.prototype.finishSentence = function() {
+Player.prototype.collectScore = function() {
   this.currentAttempt = 1;
   this.score += this.currentScore;
   this.currentScore = 0;
 };
+
+// Dev cheat, remove me
+window.addEventListener("keydown", function(e) {
+  console.log("cheating!");
+  showContinueButton();
+});

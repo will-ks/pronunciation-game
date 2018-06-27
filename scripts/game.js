@@ -11,26 +11,29 @@ Game.prototype.createPlayer = function(name) {
   this.player.setName(name);
 };
 
-Game.prototype.getSentences = function(num) {
-  this.sentences = getRandomSentences(num);
+Game.prototype.getSentences = function(num, option, lang) {
+  switch (option) {
+    case "normal":
+      this.sentences = getRandomSentences(num, lang);
+      break;
+  }
 };
 
 Game.prototype.getProgressPercent = function() {
   return Math.floor((this.currentSentenceNum / this.gameLength) * 100);
 };
 
-Game.prototype.startGame = function() {
-  var self = this;
-  this.getSentences(this.gameLength);
+Game.prototype.startGame = function(option, lang) {
+  this.getSentences(this.gameLength, option, lang);
   this.nextQuestion();
-  fillInData(
-    this.player.name,
-    this.player.score,
-    this.currentSentence.sentence,
-    this.currentSentence.language,
-    this.allowedAttempts
-  );
-  drawProgressBar(this.getProgressPercent());
+  // fillInData(
+  //   this.player.name,
+  //   this.player.score,
+  //   this.currentSentence.sentence,
+  //   this.currentSentence.language,
+  //   this.allowedAttempts
+  // );
+  // drawProgressBar(this.getProgressPercent());
   this.player.handleGameStart(this);
 };
 
@@ -52,13 +55,13 @@ Game.prototype.handleRevealPronunciationButton = function() {
 };
 
 Game.prototype.handleNextButton = function() {
+  this.currentSentenceNum++;
   this.nextQuestion();
   hideNextButtons();
 };
 
 Game.prototype.nextQuestion = function() {
-  this.player.finishSentence();
-  this.currentSentenceNum++;
+  this.player.collectScore();
   this.currentSentence = this.sentences[this.currentSentenceNum];
   if (this.currentSentenceNum < this.gameLength) {
     fillInData(

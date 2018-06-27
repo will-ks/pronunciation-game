@@ -8,6 +8,8 @@ var startButton;
 var playAgainButton;
 var gameContainer;
 var finalScoreString;
+var learningModeButton;
+var timedModeButton;
 
 function main() {
   gameContainer = document.getElementById("game-container");
@@ -31,16 +33,30 @@ function buildSplash() {
     <div class="col">
       <label for="name-input">Your name</label>
       <input type="text" id="name-input" class="form-control" placeholder="Enter your name">
-      <button class="btn btn-primary btn-lg mt-3" id="start-button">Start</button>
+      <button class="btn btn-primary btn-lg mt-3" id="start-button">Regular Mode</button>
+      <button class="btn btn-primary btn-lg mt-3" id="start-learning-mode-button">Learning Mode</button>
+      <button class="btn btn-primary btn-lg mt-3" id="start-timed-mode-button">Pressure Mode</button>
     </div>
   </div>`;
 
   gameContainer.innerHTML = HTML;
 
   startButton = document.getElementById("start-button");
+  learningModeButton = document.getElementById("start-learning-mode-button");
+  timedModeButton = document.getElementById("start-timed-mode-button");
 
   // Do we really want to add event listeners in this function?
   startButton.addEventListener("click", function() {
+    var name = document.getElementById("name-input").value;
+    handleStartButtonClicked(name, "normal");
+  });
+
+  learningModeButton.addEventListener("click", function() {
+    var name = document.getElementById("name-input").value;
+    handleStartButtonClicked(name, "normal", "Spanish");
+  });
+
+  timedModeButton.addEventListener("click", function() {
     var name = document.getElementById("name-input").value;
     handleStartButtonClicked(name);
   });
@@ -157,11 +173,12 @@ function drawFinalScore(score) {
   finalScoreString.innerText = "You scored: " + score;
 }
 
-function handleStartButtonClicked(nameInputValue) {
+function handleStartButtonClicked(nameInputValue, option, lang) {
   var game = new Game();
+  window.game = game;
   game.createPlayer(nameInputValue);
   buildGame();
-  game.startGame();
+  game.startGame(option, lang);
 }
 
 // function toggleContinueButtons() {

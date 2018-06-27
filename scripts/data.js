@@ -85,27 +85,42 @@ var languages = [
   }
 ];
 
-function getRandomSentences(num) {
+function getRandomSentences(num, lang) {
   var chosenSentences = [];
   var array = [];
   function getSentence() {
-    var randomLanguageNumber = [Math.floor(Math.random() * languages.length)];
-    var randomLanguage = languages[randomLanguageNumber];
+    // Get random language, if no language argument specified, else return
+    var languageNumber;
+    if (!lang) {
+      languageNumber = [Math.floor(Math.random() * languages.length)];
+    } else {
+      languageNumber = languages.findIndex(function(item) {
+        return item.name === lang;
+      });
+    }
+    var language = languages[languageNumber];
     var randomSentenceNumber = Math.floor(
-      Math.random() * randomLanguage.sentences.length
+      Math.random() * language.sentences.length
     );
-    var randomSentence = randomLanguage.sentences[randomSentenceNumber];
-    var translation = randomLanguage.translations[randomSentenceNumber];
+    var randomSentence = language.sentences[randomSentenceNumber];
+    var translation = language.translations[randomSentenceNumber];
     if (chosenSentences.indexOf(randomSentence) === -1) {
       chosenSentences.push(randomSentence);
       return {
-        language: randomLanguage.name,
-        bcp47: randomLanguage.bcp47,
+        language: language.name,
+        bcp47: language.bcp47,
         sentence: randomSentence,
         translation: translation
       };
-    } else {
+    } else if (
+      !lang ||
+      chosenSentences.length < languages[languageNumber].sentences.length
+    ) {
       return getSentence();
+    } else {
+      // If there's not enough sentences, change the game length to the number of sentences available
+      console.log("Not enough sentences!");
+      window.game.gameLength = chosenSentences.length;
     }
   }
   for (var i = 0; i < num; i++) {
