@@ -24,13 +24,14 @@ window.addEventListener("load", main);
 
 function buildSplash() {
   var HTML = `
-  <div class="row m-3">
+  <div class="row m-3 text-center" id="title-screen-title">
     <div class="col">
-      <h1>Amazing Game</h1>
+      <h1>Pronuncio</h1>
+      <img src="/images/robot-face.svg" alt="Robot face">
     </div>
   </div>
   
-  <div class="row m-3">
+  <div class="row m-3 text-center">
     <div class="col">
       <label for="name-input">Your name</label>
       <input type="text" id="name-input" class="form-control" placeholder="Enter your name">
@@ -38,7 +39,7 @@ function buildSplash() {
       <button class="btn btn-primary btn-lg mt-3" id="start-learning-mode-button">Learning Mode</button>
       
       <div class="form-group pt-3">
-        <span class="switch switch-lg">
+        <span class="switch switch">
           <input type="checkbox" class="switch" id="timed-mode-switch">
           <label for="timed-mode-switch">Pressure Mode</label>
         </span>
@@ -109,8 +110,9 @@ function buildGame() {
   <p class="card-text">foo</p>
   </div>
   <div class="card-footer text-muted text-center">
-  <p class="card-text mb-0" id="target-language">English</p>
   <img src="/images/flags/af.png" id="country-flag">
+  <span class="card-text mb-0" id="target-language">English</span>
+  
   </div>
   </div>
   </div>
@@ -133,10 +135,13 @@ function buildGame() {
   <div class="row m-3">
   <div class="col text-center">
   <button class="btn btn-primary btn-lg" id="speak-button">Speak</button>
-  <p class="m-3" id="attempts-string"></p>
   </div>
   </div>
 
+  <div class="row m-3">
+  <div class="col text-center col-3"><img src="/images/robot-face.svg" alt="Robot face"></div>
+  <div class="col text-center col-9"><div class="speech-bubble"><p class="m-3 text-light" id="attempts-string"></p></div></div>
+  </div>
 
   <div class="row m-3">
   <div class="col text-center">
