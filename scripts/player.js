@@ -56,10 +56,15 @@ Player.prototype.handleVoiceInput = function(phrase, phrases) {
   var diff = game.diffStrings(game.currentSentence.sentence, phrase);
   var score = game.calculateDiffScore(game.currentSentence.sentence, phrase);
   drawDiffedStrings(diff);
-  // drawCurrentScore(score);
-  game.translateString(phrase, game.currentSentence.bcp47);
   this.currentScore = score;
   this.currentAttempt++;
+
+  // Translate attempt, if it is not perfect. If it is, use the predefined translation.
+  if (!this.currentScore === 100) {
+    game.translateString(phrase, game.currentSentence.bcp47);
+  } else {
+    drawTranslation(game.currentSentence.translation);
+  }
 
   if (this.currentScore === 100) {
     drawAttemptString("Pronuncio understands perfectly!");

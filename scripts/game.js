@@ -93,6 +93,7 @@ Game.prototype.nextQuestion = function() {
     }
     enableSpeakButton();
     hideContinueButton();
+    hideSpeechBubble();
   } else {
     this.gameEnded();
   }

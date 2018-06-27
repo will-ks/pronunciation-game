@@ -140,7 +140,7 @@ function buildGame() {
 
   <div class="row m-3">
   <div class="col text-center col-3"><img src="images/robot-face.svg" alt="Robot face"></div>
-  <div class="col text-center col-9"><div class="speech-bubble"><p class="m-3 text-light" id="attempts-string"></p></div></div>
+  <div class="col text-center col-9"><div class="speech-bubble"><p class="p-3 text-light" id="attempts-string"></p></div></div>
   </div>
 
   <div class="row m-3">
@@ -272,6 +272,7 @@ function drawCurrentScore(score) {
 
 function drawAttemptString(string) {
   document.getElementById("attempts-string").innerText = string;
+  showSpeechBubble();
 }
 
 function showTimer() {
@@ -330,4 +331,12 @@ function drawProgressBar(percent) {
   var progressBar = document.getElementById("current-level-bar");
   progressBar.setAttribute("style", "width: " + percent + "%");
   progressBar.setAttribute("aria-valuenow", percent);
+}
+
+function hideSpeechBubble() {
+  document.querySelector(".speech-bubble").classList.add("d-none");
+}
+
+function showSpeechBubble() {
+  document.querySelector(".speech-bubble").classList.remove("d-none");
 }
