@@ -1,3 +1,5 @@
+"use strict";
+
 var languages = [
   {
     name: "Afrikaans",
@@ -131,4 +133,12 @@ function getRandomSentences(num, lang) {
     array.push(getSentence());
   }
   return array;
+}
+
+function getLanguagesList() {
+  var languagesList = [];
+  languages.forEach(function(item) {
+    languagesList.push(item.name);
+  });
+  return languagesList.sort();
 }

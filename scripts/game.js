@@ -1,3 +1,5 @@
+"use strict";
+
 function Game() {
   this.sentences = [];
   this.currentSentenceNum = 0;

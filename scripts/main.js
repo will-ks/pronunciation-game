@@ -1,5 +1,6 @@
 "use strict";
 
+var game;
 var speakBtn;
 var continueBtn;
 var revealPronunciationBtn;
@@ -10,6 +11,7 @@ var gameContainer;
 var finalScoreString;
 var learningModeButton;
 var timedModeButton;
+var languagesList;
 
 function main() {
   gameContainer = document.getElementById("game-container");
@@ -53,12 +55,36 @@ function buildSplash() {
 
   learningModeButton.addEventListener("click", function() {
     var name = document.getElementById("name-input").value;
-    handleStartButtonClicked(name, "normal", "Spanish");
+    buildLanguagesList(name, "normal", getLanguagesList());
   });
 
   timedModeButton.addEventListener("click", function() {
     var name = document.getElementById("name-input").value;
     handleStartButtonClicked(name);
+  });
+}
+
+function buildLanguagesList(playerName, option, list) {
+  var HTML = `<div class="list-group m-3" id="languages-list"></div>`;
+
+  gameContainer.innerHTML = HTML;
+
+  languagesList = document.getElementById("languages-list");
+
+  list.forEach(function(language) {
+    var listItem = document.createElement("button");
+    listItem.setAttribute("type", "button");
+    listItem.classList.add("list-group-item");
+    listItem.classList.add("list-group-item-action");
+    listItem.innerText = language;
+    languagesList.appendChild(listItem);
+    // Add click handlers for each language. IIFE for maintaining language name in scope
+    (function(lang) {
+      listItem.addEventListener("click", function() {
+        handleStartButtonClicked(playerName, option, lang);
+        console.log(lang);
+      });
+    })(language);
   });
 }
 
@@ -174,8 +200,7 @@ function drawFinalScore(score) {
 }
 
 function handleStartButtonClicked(nameInputValue, option, lang) {
-  var game = new Game();
-  window.game = game;
+  game = new Game();
   game.createPlayer(nameInputValue);
   buildGame();
   game.startGame(option, lang);
