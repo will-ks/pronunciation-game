@@ -26,15 +26,6 @@ Game.prototype.getProgressPercent = function() {
 Game.prototype.startGame = function(option, lang) {
   this.getSentences(this.gameLength, option, lang);
   this.nextQuestion();
-  // fillInData(
-  //   this.player.name,
-  //   this.player.score,
-  //   this.currentSentence.sentence,
-  //   this.currentSentence.language,
-  //   this.allowedAttempts
-  // );
-  // drawProgressBar(this.getProgressPercent());
-  this.player.handleGameStart(this);
 };
 
 Game.prototype.handleContinueButton = function() {

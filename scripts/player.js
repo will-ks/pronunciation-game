@@ -5,11 +5,6 @@ function Player() {
   this.currentScore = 0;
 }
 
-var game = null;
-Player.prototype.handleGameStart = function(g) {
-  game = g;
-};
-
 Player.prototype.setName = function(name) {
   this.name = name;
 };

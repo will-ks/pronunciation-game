@@ -181,13 +181,6 @@ function handleStartButtonClicked(nameInputValue, option, lang) {
   game.startGame(option, lang);
 }
 
-// function toggleContinueButtons() {
-//   continueBtn.classList.toggle("d-none");
-//   nextBtn.classList.toggle("d-none");
-//   revealPronunciationBtn.classList.toggle("d-none");
-//   enableRevealPronunciationButton();
-// }
-
 function hideNextButtons() {
   nextBtn.classList.add("d-none");
   revealPronunciationBtn.classList.add("d-none");
@@ -236,11 +229,6 @@ function drawDiffedStrings(diff) {
 function drawCurrentScore(score) {
   document.querySelector("#similarity-score p").innerText = score;
 }
-
-// function drawAttempts(attempts) {
-//   document.getElementById("attempts-string").innerText =
-//     "Attempt " + game.player.currentAttempt + " of " + game.allowedAttempts;
-// }
 
 function drawAttemptString(string) {
   document.getElementById("attempts-string").innerText = string;

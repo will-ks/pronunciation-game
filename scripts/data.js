@@ -89,7 +89,7 @@ function getRandomSentences(num, lang) {
   var chosenSentences = [];
   var array = [];
   function getSentence() {
-    // Get random language, if no language argument specified, else return
+    // Get random language, if no language argument specified, else use specified language.
     var languageNumber;
     if (!lang) {
       languageNumber = [Math.floor(Math.random() * languages.length)];
@@ -99,11 +99,13 @@ function getRandomSentences(num, lang) {
       });
     }
     var language = languages[languageNumber];
+    // Get random sentence from language
     var randomSentenceNumber = Math.floor(
       Math.random() * language.sentences.length
     );
     var randomSentence = language.sentences[randomSentenceNumber];
     var translation = language.translations[randomSentenceNumber];
+    // Check if selected sentence has already been added to our array. If not, add it.
     if (chosenSentences.indexOf(randomSentence) === -1) {
       chosenSentences.push(randomSentence);
       return {
@@ -112,6 +114,7 @@ function getRandomSentences(num, lang) {
         sentence: randomSentence,
         translation: translation
       };
+      // If selected sentence has already been selected, run this function again (as long as there is enough sentences)
     } else if (
       !lang ||
       chosenSentences.length < languages[languageNumber].sentences.length
