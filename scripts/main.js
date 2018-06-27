@@ -105,12 +105,12 @@ function buildGame() {
   <div class="row m-3">
   <div class="col">
   <div class="card" id="target-sentence">
-  <!-- <img class="card-img-top" src="https://cdn.rawgit.com/hjnilsson/country-flags/master/svg/ad.svg" alt="Andorra flag "></img> -->
   <div class="card-body text-center">
   <p class="card-text">foo</p>
   </div>
-  <div class="card-footer text-muted text-center" id="target-language">
-  <p class="card-text">English</p>
+  <div class="card-footer text-muted text-center">
+  <p class="card-text mb-0" id="target-language">English</p>
+  <img src="/images/flags/af.png" id="country-flag">
   </div>
   </div>
   </div>
@@ -201,6 +201,12 @@ function buildGameOver(score) {
 function drawFinalScore(score) {
   finalScoreString = document.getElementById("final-score");
   finalScoreString.innerText = "You scored: " + score;
+}
+
+function drawFlag(bcp47) {
+  document
+    .getElementById("country-flag")
+    .setAttribute("src", "/images/flags/" + bcp47 + ".png");
 }
 
 function handleStartButtonClicked(nameInputValue, option, lang) {

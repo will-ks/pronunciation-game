@@ -85,6 +85,7 @@ Game.prototype.nextQuestion = function() {
       this.currentSentence.language,
       this.allowedAttempts
     );
+    drawFlag(this.currentSentence.bcp47);
     if (!this.timed) {
       drawProgressBar(
         this.getProgressPercent(this.currentSentenceNum, this.gameLength)
