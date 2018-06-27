@@ -10,7 +10,6 @@ var playAgainButton;
 var gameContainer;
 var finalScoreString;
 var learningModeButton;
-var timedModeButton;
 var languagesList;
 
 function main() {
@@ -37,7 +36,14 @@ function buildSplash() {
       <input type="text" id="name-input" class="form-control" placeholder="Enter your name">
       <button class="btn btn-primary btn-lg mt-3" id="start-button">Regular Mode</button>
       <button class="btn btn-primary btn-lg mt-3" id="start-learning-mode-button">Learning Mode</button>
-      <button class="btn btn-primary btn-lg mt-3" id="start-timed-mode-button">Pressure Mode</button>
+      
+      <div class="form-group pt-3">
+        <span class="switch switch-lg">
+          <input type="checkbox" class="switch" id="timed-mode-switch">
+          <label for="timed-mode-switch">Pressure Mode</label>
+        </span>
+      </div>
+
     </div>
   </div>`;
 
@@ -45,22 +51,17 @@ function buildSplash() {
 
   startButton = document.getElementById("start-button");
   learningModeButton = document.getElementById("start-learning-mode-button");
-  timedModeButton = document.getElementById("start-timed-mode-button");
 
   // Do we really want to add event listeners in this function?
   startButton.addEventListener("click", function() {
     var name = document.getElementById("name-input").value;
-    handleStartButtonClicked(name, "normal");
+    var timedMode = document.getElementById("timed-mode-switch").checked;
+    handleStartButtonClicked(name, timedMode ? "timed" : "normal");
   });
 
   learningModeButton.addEventListener("click", function() {
     var name = document.getElementById("name-input").value;
     buildLanguagesList(name, "normal", getLanguagesList());
-  });
-
-  timedModeButton.addEventListener("click", function() {
-    var name = document.getElementById("name-input").value;
-    handleStartButtonClicked(name);
   });
 }
 
@@ -90,10 +91,13 @@ function buildLanguagesList(playerName, option, list) {
 
 function buildGame() {
   var HTML = `<div class="row m-3">
-  <div class="col col-6">
+  <div class="col col-4">
   <h1 id="player-name">Name</h1>
   </div>
-  <div class="col col-6 text-right">
+  <div class="col col-4 text-center">
+  <h1 id="timer-display" class="d-none"></h1>
+  </div>
+  <div class="col col-4 text-right">
   <h1 id="player-score">0000</h1>
   </div>
   </div>
@@ -144,7 +148,7 @@ function buildGame() {
   
   <div class="row m-3">
   <div class="col">
-  <div class="progress">
+  <div class="progress" id="progress-bar">
   <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="current-level-bar"></div>
   </div>
   </div>
@@ -257,6 +261,18 @@ function drawCurrentScore(score) {
 
 function drawAttemptString(string) {
   document.getElementById("attempts-string").innerText = string;
+}
+
+function showTimer() {
+  document.getElementById("timer-display").classList.remove("d-none");
+}
+
+function hideProgressBar() {
+  document.getElementById("progress-bar").classList.add("d-none");
+}
+
+function drawTimer() {
+  document.getElementById("timer-display").innerText = game.timer;
 }
 
 function disableSpeakButton() {

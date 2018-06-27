@@ -6,6 +6,10 @@ function Game() {
   this.currentSentence;
   this.gameLength = 10;
   this.allowedAttempts = 3;
+  this.timed = false;
+  this.timer = 30;
+  this.timerMax = 30;
+  this.timerID;
 }
 
 Game.prototype.createPlayer = function(name) {
@@ -13,21 +17,38 @@ Game.prototype.createPlayer = function(name) {
   this.player.setName(name);
 };
 
-Game.prototype.getSentences = function(num, option, lang) {
-  switch (option) {
-    case "normal":
-      this.sentences = getRandomSentences(num, lang);
-      break;
-  }
+Game.prototype.getSentences = function(num, lang) {
+  this.sentences = getRandomSentences(num, lang);
 };
 
-Game.prototype.getProgressPercent = function() {
-  return Math.floor((this.currentSentenceNum / this.gameLength) * 100);
+Game.prototype.getProgressPercent = function(current, total) {
+  return Math.floor((current / total) * 100);
 };
 
 Game.prototype.startGame = function(option, lang) {
-  this.getSentences(this.gameLength, option, lang);
+  var self = this;
+  this.getSentences(this.gameLength, lang);
+  // If timed mode is on, start timer interval and show timer
+  if (option === "timed") {
+    this.timed = true;
+    showTimer();
+    drawProgressBar(self.getProgressPercent(self.timer, self.timerMax));
+    this.timerID = window.setInterval(function() {
+      drawTimer();
+      drawProgressBar(self.getProgressPercent(self.timer, self.timerMax));
+      self.timerDecrement();
+    }, 1000);
+  }
   this.nextQuestion();
+};
+
+Game.prototype.timerDecrement = function() {
+  this.timer--;
+  if (this.timer < 0) {
+    this.gameEnded();
+    window.clearInterval(this.timerID);
+    return;
+  }
 };
 
 Game.prototype.handleContinueButton = function() {
@@ -64,12 +85,20 @@ Game.prototype.nextQuestion = function() {
       this.currentSentence.language,
       this.allowedAttempts
     );
-    drawProgressBar(this.getProgressPercent());
+    if (!this.timed) {
+      drawProgressBar(
+        this.getProgressPercent(this.currentSentenceNum, this.gameLength)
+      );
+    }
     enableSpeakButton();
     hideContinueButton();
   } else {
-    buildGameOver(this.player.score);
+    this.gameEnded();
   }
+};
+
+Game.prototype.gameEnded = function() {
+  buildGameOver(this.player.score);
 };
 
 Game.prototype.cleanString = function(string) {
@@ -88,11 +117,7 @@ Game.prototype.diffStrings = function(string1, string2) {
   var cleanString1 = this.cleanString(string1);
   var cleanString2 = this.cleanString(string2);
 
-  var diff = JsDiff.diffWordsWithSpace(
-    cleanString1,
-    cleanString2,
-    (ignoreCase = true)
-  );
+  var diff = JsDiff.diffWordsWithSpace(cleanString1, cleanString2);
   return diff;
 };
 
