@@ -72,20 +72,6 @@ var languages = [
     ]
   },
   {
-    name: "Estonian",
-    bcp47: "et",
-    sentences: [
-      "Tomi käed on räpased.",
-      "Päike on punane.",
-      "Kas teil õlut on?"
-    ],
-    translations: [
-      "Tom's hands are dirty.",
-      "The sun is red.",
-      "Do you have any beer?"
-    ]
-  },
-  {
     name: "Finnish",
     bcp47: "fi",
     sentences: [
