@@ -86,6 +86,12 @@ Player.prototype.handleVoiceInput = function(phrase, phrases) {
     drawAttemptString("Pronuncio declares this is hopeless. Let's move on.");
     game.handleContinueButton();
   }
+
+  if (game.zombieMode && this.currentScore > 0) {
+    game.killZombie();
+    game.handleContinueButton();
+    game.handleNextButton();
+  }
 };
 
 Player.prototype.collectScore = function() {

@@ -67,9 +67,6 @@ Game.prototype.handleContinueButton = function() {
   if (!this.checkIfVoiceAvailable(this.currentSentence.bcp47)) {
     disableRevealPronunciationButton();
   }
-  if (this.zombieMode) {
-    this.killZombie();
-  }
 };
 
 Game.prototype.handlePlayAgainButton = function() {
@@ -213,6 +210,7 @@ Game.prototype.startZombieMode = function() {
     self.spawnZombie();
   }, 4000);
   game.startZombieChecking();
+  hideInputCard();
 };
 
 Game.prototype.stopZombieMode = function(zombieSpawnIntervalID) {
@@ -237,11 +235,8 @@ Game.prototype.checkIfZombieWalkFinished = function() {
     document.documentElement.clientHeight,
     window.innerHeight
   );
-  console.log("checking");
   zombies.forEach(function(zombie) {
-    console.log(zombie.offsetTop);
     if (zombie.offsetTop > viewportHeight - 80) {
-      console.log("zombie off screen");
       self.stopZombieChecking(self.zombieIntervalID);
       self.stopZombieMode(self.zombieSpawnIntervalID);
       self.gameEnded();
