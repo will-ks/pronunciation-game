@@ -74,17 +74,14 @@ Player.prototype.handleVoiceInput = function(phrase, phrases) {
     drawAttemptString("Pronuncio understands perfectly!");
     game.handleContinueButton();
   } else if (this.currentScore > 80) {
-    drawAttemptString(
-      "Pronuncio kind of understood that, human. You may try again or continue."
-    );
+    drawAttemptString("Pronuncio is slightly confused...");
     showContinueButton();
   } else if (this.currentScore > 40) {
-    drawAttemptString(
-      "Your words confuse Pronuncio but you may continue if you wish."
-    );
+    drawAttemptString("Pronuncio is very confused by your words, human.");
     showContinueButton();
   } else if (this.currentAttempt <= game.allowedAttempts) {
-    drawAttemptString("Pronuncio declares that a terrible attempt. Try again!");
+    drawAttemptString("Pronuncio has no idea what you are talking about.");
+    showContinueButton();
   } else {
     drawAttemptString("Pronuncio declares this is hopeless. Let's move on.");
     game.handleContinueButton();
