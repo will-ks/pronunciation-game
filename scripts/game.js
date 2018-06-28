@@ -100,7 +100,13 @@ Game.prototype.nextQuestion = function() {
 };
 
 Game.prototype.gameEnded = function() {
-  buildGameOver(this.player.score);
+  this.addScoreToHighScores();
+  buildGameOver(this.player.score, this.getHighScores(10));
+};
+
+Game.prototype.addScoreToHighScores = function() {
+  var scoreObject = { playerName: this.player.name, score: this.player.score };
+  highScores.push(scoreObject);
 };
 
 Game.prototype.cleanString = function(string) {
@@ -176,4 +182,14 @@ Game.prototype.translateString = function(string, lang) {
     .catch(err => {
       //error block
     });
+};
+
+Game.prototype.getHighScores = function(num) {
+  var scores = highScores.slice(0);
+
+  scores.sort(function(a, b) {
+    return b.score - a.score;
+  });
+
+  return scores.slice(0, num);
 };

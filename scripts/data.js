@@ -157,6 +157,8 @@ var languages = [
   }
 ];
 
+var highScores = [];
+
 function getRandomSentences(num, lang) {
   var chosenSentences = [];
   var array = [];

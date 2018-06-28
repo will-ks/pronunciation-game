@@ -11,6 +11,7 @@ var gameContainer;
 var finalScoreString;
 var learningModeButton;
 var languagesList;
+var highScoresList;
 
 function main() {
   gameContainer = document.getElementById("game-container");
@@ -186,17 +187,34 @@ function buildGame() {
   });
 }
 
-function buildGameOver(score) {
+function buildGameOver(score, highScores) {
   var HTML = `<div class="row m-3">
   <div class="col text-center">
   <h1>Game Over</h1>
   <h2 id="final-score">You scored: 0000</h2>
-  <button class="btn btn-lg btn-primary" id="play-again-btn">Play again?</button>
+  <button class="btn btn-lg btn-primary mb-3" id="play-again-btn">Play again?</button>
+  <h3>High Scores</h3>
+  <ul class="list-group m-3" id="high-scores-list"></ul>
   </div>
   </div>`;
 
   gameContainer.innerHTML = HTML;
   drawFinalScore(score);
+
+  highScoresList = document.getElementById("high-scores-list");
+
+  highScores.forEach(function(score) {
+    var listItem = document.createElement("li");
+    listItem.classList.add("list-group-item");
+    listItem.innerHTML =
+      `<p class="font-weight-bold">` +
+      score.playerName +
+      `</p><p>` +
+      score.score +
+      `</p>`;
+    highScoresList.appendChild(listItem);
+  });
+
   playAgainButton = document.getElementById("play-again-btn");
 
   playAgainButton.addEventListener("click", function() {

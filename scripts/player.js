@@ -8,7 +8,11 @@ function Player() {
 }
 
 Player.prototype.setName = function(name) {
-  this.name = name;
+  if (name) {
+    this.name = name;
+  } else {
+    this.name = "Player";
+  }
 };
 
 Player.prototype.handleSpeakButtonClick = function() {
