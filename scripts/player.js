@@ -46,7 +46,7 @@ Player.prototype.startListening = function(languageBcp47String) {
   });
 
   // Start listening.
-  annyang.start({ autoRestart: true, continuous: true });
+  annyang.start({ autoRestart: false });
 };
 
 Player.prototype.stopListening = function() {
