@@ -369,6 +369,7 @@ function drawListening() {
   var speakBtn = document.getElementById("speak-button");
   speakBtn.classList.add("btn-success");
   speakBtn.classList.add("pulse");
+  speakBtn.setAttribute("disabled", true);
   document.querySelector(".listening-overlay").classList.add("listening");
 }
 
@@ -376,6 +377,7 @@ function drawListeningStopped() {
   var speakBtn = document.getElementById("speak-button");
   speakBtn.classList.remove("btn-success");
   speakBtn.classList.remove("pulse");
+  speakBtn.removeAttribute("disabled");
   document.querySelector(".listening-overlay").classList.remove("listening");
 }
 
