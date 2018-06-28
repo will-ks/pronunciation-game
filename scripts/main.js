@@ -74,7 +74,7 @@ function buildSplash() {
 }
 
 function buildLanguagesList(playerName, option, list) {
-  var HTML = `<div class="list-group m-3" id="languages-list"></div>`;
+  var HTML = `<div class="row m-3 text-center"><div class="col"><h1>Learning Mode</h1><p>Choose a language</p><div class="list-group m-3" id="languages-list"></div></div></div>`;
 
   gameContainer.innerHTML = HTML;
 
@@ -144,7 +144,7 @@ function buildGame() {
 
   <div class="row m-3">
   <div class="col text-center">
-  <button class="btn btn-primary btn-lg" id="speak-button">Speak</button>
+  <button class="btn btn-primary btn-lg btn-block" id="speak-button">Speak</button>
   </div>
   </div>
 

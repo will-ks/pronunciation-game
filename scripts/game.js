@@ -211,6 +211,7 @@ Game.prototype.startZombieMode = function() {
   }, 4000);
   game.startZombieChecking();
   hideInputCard();
+  document.body.classList.add("bg-danger");
 };
 
 Game.prototype.stopZombieMode = function(zombieSpawnIntervalID) {
