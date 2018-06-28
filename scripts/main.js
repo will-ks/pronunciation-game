@@ -359,11 +359,15 @@ function showContinueButton() {
 }
 
 function drawListening() {
-  document.getElementById("speak-button").classList.add("btn-success");
+  var speakBtn = document.getElementById("speak-button");
+  speakBtn.classList.add("btn-success");
+  speakBtn.classList.add("pulse");
 }
 
 function drawListeningStopped() {
-  document.getElementById("speak-button").classList.remove("btn-success");
+  var speakBtn = document.getElementById("speak-button");
+  speakBtn.classList.remove("btn-success");
+  speakBtn.classList.remove("pulse");
 }
 
 function drawProgressBar(percent) {
@@ -392,4 +396,12 @@ function checkIfSpeechEnabled() {
     // SpeechRecognition API not available in browser
     buildIncompatibleScreen();
   }
+}
+
+function hideInputCard() {
+  document.getElementById("input-sentence").classList.add("d-none");
+}
+
+function showInputCard() {
+  document.getElementById("input-sentence").classList.remove("d-none");
 }
