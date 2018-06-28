@@ -124,3 +124,23 @@
   animation-fill-mode: forwards;
   animation-delay: 1.2s;
 }
+
+.listening-overlay {
+  background: none;
+  position: absolute;
+  opacity: 0;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+body {
+  transition: all 0.3s;
+}
+
+.listening {
+  opacity: 0.4;
+}

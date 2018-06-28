@@ -100,6 +100,7 @@ function buildLanguagesList(playerName, option, list) {
 function buildGame() {
   var HTML = `
   <div id="zombie-spawner"></div>
+  <div class="listening-overlay bg-success"></div>
   <div class="row m-3">
   <div class="col col-4">
   <h1 id="player-name">Name</h1>
@@ -368,12 +369,14 @@ function drawListening() {
   var speakBtn = document.getElementById("speak-button");
   speakBtn.classList.add("btn-success");
   speakBtn.classList.add("pulse");
+  document.querySelector(".listening-overlay").classList.add("listening");
 }
 
 function drawListeningStopped() {
   var speakBtn = document.getElementById("speak-button");
   speakBtn.classList.remove("btn-success");
   speakBtn.classList.remove("pulse");
+  document.querySelector(".listening-overlay").classList.remove("listening");
 }
 
 function drawProgressBar(percent) {

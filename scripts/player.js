@@ -54,9 +54,6 @@ Player.prototype.stopListening = function() {
 };
 
 Player.prototype.handleVoiceInput = function(phrase, phrases) {
-  console.log("I think the user said: ", phrase);
-  console.log("But then again, it could be any of the following: ", phrases);
-
   var diff = game.diffStrings(game.currentSentence.sentence, phrase);
   var score = game.calculateDiffScore(game.currentSentence.sentence, phrase);
   drawDiffedStrings(diff);
