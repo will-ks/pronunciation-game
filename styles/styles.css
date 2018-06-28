@@ -31,6 +31,7 @@
   width: 100px;
   height: 100px;
   animation: walk 30s normal;
+  z-index: 1;
 }
 @keyframes walk {
   0% {
@@ -39,4 +40,9 @@
   100% {
     top: 105vh;
   }
+}
+
+.zombie-dead {
+  background-image: url("../images/blood-explosion.gif");
+  transform: rotate(45deg);
 }

@@ -232,7 +232,7 @@ Game.prototype.spawnZombie = function() {
 
 Game.prototype.checkIfZombieWalkFinished = function() {
   var self = this;
-  var zombies = document.querySelectorAll(".zombie");
+  var zombies = document.querySelectorAll(".zombie:not(.zombie-dead)");
   var viewportHeight = Math.max(
     document.documentElement.clientHeight,
     window.innerHeight
@@ -262,5 +262,8 @@ Game.prototype.stopZombieChecking = function(intervalID) {
 Game.prototype.killZombie = function() {
   var zombieSpawner = document.getElementById("zombie-spawner");
   var zombie = document.querySelector(".zombie");
-  zombieSpawner.removeChild(zombie);
+  zombie.classList.add("zombie-dead");
+  window.setTimeout(function() {
+    zombieSpawner.removeChild(zombie);
+  }, 1000);
 };
