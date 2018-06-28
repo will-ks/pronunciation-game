@@ -208,6 +208,7 @@ Game.prototype.getHighScores = function(num) {
 
 Game.prototype.startZombieMode = function() {
   var self = this;
+  this.zombieMode = true;
   this.zombieSpawnIntervalID = window.setInterval(function() {
     self.spawnZombie();
   }, 4000);
@@ -239,10 +240,11 @@ Game.prototype.checkIfZombieWalkFinished = function() {
   console.log("checking");
   zombies.forEach(function(zombie) {
     console.log(zombie.offsetTop);
-    if (zombie.offsetTop > viewportHeight) {
+    if (zombie.offsetTop > viewportHeight - 80) {
       console.log("zombie off screen");
       self.stopZombieChecking(self.zombieIntervalID);
       self.stopZombieMode(self.zombieSpawnIntervalID);
+      self.gameEnded();
     }
   });
 };
