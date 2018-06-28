@@ -67,3 +67,60 @@
     transform: scale3d(1, 1, 1);
   }
 }
+
+.jackInTheBox {
+  animation: jackInTheBox 1s;
+}
+@keyframes jackInTheBox {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.1) rotate(30deg);
+    transform: scale(0.1) rotate(30deg);
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+  }
+
+  50% {
+    -webkit-transform: rotate(-17deg);
+    transform: rotate(-17deg);
+  }
+
+  70% {
+    -webkit-transform: rotate(8deg);
+    transform: rotate(8deg);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes rotateInUpLeft {
+  from {
+    -webkit-transform-origin: left bottom;
+    transform-origin: left bottom;
+    -webkit-transform: rotate3d(0, 0, 1, 45deg);
+    transform: rotate3d(0, 0, 1, 45deg);
+    opacity: 0;
+  }
+
+  to {
+    -webkit-transform-origin: left bottom;
+    transform-origin: left bottom;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.rotateInUpLeft {
+  animation: rotateInUpLeft 0.5s;
+}
+
+.animation-delay {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-delay: 1.2s;
+}

@@ -29,8 +29,13 @@ function buildSplash() {
   var HTML = `<div class="row m-3 text-center" id="title-screen-title">
     <div class="col">
       <h1>Pronuncio</h1>
-      <img src="images/robot-face.svg" alt="Robot face">
+ 
+      <img src="images/robot-face.svg" alt="Robot face" class="jackInTheBox">
     </div>
+  </div>
+  <div class="row text-center">
+  <div class="col-6"></div>
+  <div class="col-6"><div class="speech-bubble rotateInUpLeft animation-delay"><p class="text-light p-3">Greetings. I am Pronuncio.</p></div></div>
   </div>
   
   <div class="row m-3 text-center">
@@ -275,9 +280,10 @@ function fillInData(name, score, sentence, language, allowedAttempts) {
   document.getElementById("player-name").innerText = name;
   document.getElementById("player-score").innerText = score;
   document.querySelector("#target-sentence p").innerText = sentence;
-  document.getElementById("input-card-body").innerHTML = "";
+  document.getElementById("input-card-body").innerHTML = "<span>&nbsp;</span>";
   document.getElementById("target-language").innerText = language;
-  document.querySelector("#similarity-score p").innerText = "";
+  document.querySelector("#similarity-score p").innerHTML =
+    "<p class='card-text'>&nbsp;</p>";
   document.getElementById("attempts-string").innerText = "";
 }
 
@@ -381,7 +387,9 @@ function hideSpeechBubble() {
 }
 
 function showSpeechBubble() {
-  document.querySelector(".speech-bubble").classList.remove("d-none");
+  var speechBubble = document.querySelector(".speech-bubble");
+  speechBubble.classList.remove("d-none");
+  speechBubble.classList.add("rotateInUpLeft");
 }
 
 function checkIfSpeechEnabled() {
