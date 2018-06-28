@@ -26,7 +26,8 @@ function main() {
 window.addEventListener("load", main);
 
 function buildSplash() {
-  var HTML = `<div class="row m-3 text-center" id="title-screen-title">
+  var HTML = `
+  <div class="row m-3 text-center" id="title-screen-title">
     <div class="col">
       <h1>Pronuncio</h1>
  
@@ -102,72 +103,79 @@ function buildGame() {
   <div id="zombie-spawner"></div>
   <div class="listening-overlay bg-success"></div>
   <div class="row m-3">
-  <div class="col col-4">
-  <h1 id="player-name">Name</h1>
-  </div>
-  <div class="col col-4 text-center">
-  <h1 id="timer-display" class="d-none"></h1>
-  </div>
-  <div class="col col-4 text-right">
-  <h1 id="player-score">0000</h1>
-  </div>
-  </div>
-  
-  <div class="row m-3">
-  <div class="col">
-  <div class="card" id="target-sentence">
-  <div class="card-body text-center">
-  <p class="card-text">foo</p>
-  </div>
-  <div class="card-footer text-muted text-center">
-  <img src="images/flags/af.png" id="country-flag">
-  <span class="card-text mb-0" id="target-language">English</span>
-  
-  </div>
-  </div>
-  </div>
-  </div>
-
-  <div class="row m-3">
-  <div class="col">
-  <div class="card" id="input-sentence">
-  <div class="card-body text-center" id="input-card-body">
-  <p class="card-text">foo</p>
-  
-  </div>
-  <div class="card-footer text-muted text-center" id="similarity-score">
-  <p class="card-text"></p>
-  </div>
-  </div>
-  </div>
-  </div>
-
-  <div class="row m-3">
-  <div class="col text-center">
-  <button class="btn btn-primary btn-lg btn-block" id="speak-button">Speak</button>
-  </div>
-  </div>
-
-  <div class="row m-3">
-  <div class="col text-center col-3"><img src="images/robot-face.svg" alt="Robot face" id="robot-head"></div>
-  <div class="col text-center col-9"><div class="speech-bubble"><p class="p-3 text-light" id="attempts-string"></p></div></div>
-  </div>
-
-  <div class="row m-3">
-  <div class="col text-center">
-  <button class="btn btn-primary btn-lg" id="continue-button">Continue</button>
-  <button class="btn btn-primary btn-lg d-none" id="reveal-pronunciation-button">What should it sound like?</button>
-  <button class="btn btn-primary btn-lg d-none" id="next-button">Next</button>
-  </div>
+    <div class="col col-4">
+      <h1 id="player-name">Name</h1>
+    </div>
+    <div class="col col-4 text-center">
+      <h1 id="timer-display" class="d-none"></h1>
+    </div>
+    <div class="col col-4 text-right">
+      <h1 id="player-score">0000</h1>
+    </div>
   </div>
   
   <div class="row m-3">
-  <div class="col">
-  <div class="progress" id="progress-bar">
-  <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="current-level-bar"></div>
+    <div class="col">
+      <div class="card" id="target-sentence">
+        <div class="card-body text-center">
+          <p class="card-text">foo</p>
+        </div>
+        <div class="card-footer text-muted text-center">
+          <img src="images/flags/af.png" id="country-flag">
+          <span class="card-text mb-0" id="target-language">English</span>
+  
+        </div>
+      </div>
+    </div>
   </div>
+  
+  <div class="row m-3">
+    <div class="col">
+      <div class="card" id="input-sentence">
+        <div class="card-body text-center" id="input-card-body">
+          <p class="card-text">foo</p>
+  
+        </div>
+        <div class="card-footer text-muted text-center" id="similarity-score">
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </div>
   </div>
-  </div>`;
+  
+  <div class="row m-3">
+    <div class="col text-center">
+      <button class="btn btn-primary btn-lg btn-block" id="speak-button">Speak</button>
+    </div>
+  </div>
+  
+  <div class="row m-3">
+    <div class="col text-center col-3">
+      <img src="images/robot-face.svg" alt="Robot face" id="robot-head">
+    </div>
+    <div class="col text-center col-9">
+      <div class="speech-bubble">
+        <p class="p-3 text-light" id="attempts-string"></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row m-3">
+    <div class="col text-center">
+      <button class="btn btn-primary btn-lg" id="continue-button">Continue</button>
+      <button class="btn btn-primary btn-lg d-none" id="reveal-pronunciation-button">What should it sound like?</button>
+      <button class="btn btn-primary btn-lg d-none" id="next-button">Next</button>
+    </div>
+  </div>
+  
+  <div class="row m-3">
+    <div class="col">
+      <div class="progress" id="progress-bar">
+        <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="current-level-bar"></div>
+      </div>
+    </div>
+  </div>
+  `;
 
   gameContainer.innerHTML = HTML;
 
@@ -196,15 +204,17 @@ function buildGame() {
 }
 
 function buildGameOver(score, highScores) {
-  var HTML = `<div class="row m-3">
-  <div class="col text-center">
-  <h1>Game Over</h1>
-  <h2 id="final-score">You scored: 0000</h2>
-  <button class="btn btn-lg btn-primary mb-3" id="play-again-btn">Play again?</button>
-  <h3>High Scores</h3>
-  <ul class="list-group m-3" id="high-scores-list"></ul>
+  var HTML = `
+  <div class="row m-3">
+    <div class="col text-center">
+     <h1>Game Over</h1>
+      <h2 id="final-score">You scored: 0000</h2>
+      <button class="btn btn-lg btn-primary mb-3" id="play-again-btn">Play again?</button>
+      <h3>High Scores</h3>
+      <ul class="list-group m-3" id="high-scores-list"></ul>
+    </div>
   </div>
-  </div>`;
+  `;
 
   gameContainer.innerHTML = HTML;
   drawFinalScore(score);
@@ -231,19 +241,20 @@ function buildGameOver(score, highScores) {
 }
 
 function buildIncompatibleScreen() {
-  var HTML = `<div class="row m-3 text-center" id="title-screen-title">
-  <div class="col">
-    <h1>Pronuncio</h1>
-    <img src="images/robot-face.svg" alt="Robot face">
+  var HTML = `
+  <div class="row m-3 text-center" id="title-screen-title">
+    <div class="col">
+      <h1>Pronuncio</h1>
+      <img src="images/robot-face.svg" alt="Robot face">
+    </div>
   </div>
-</div>
-<div class="row m-3 text-center">
-  <div class="col">
-    <h2>Incompatible Browser</h2>
-    <p>Unfortunately, the browser you are using does not support the speech recognition functionality requied by Pronuncio.</p>
-    <p>Pronuncio is currently only supported on the Chrome browser for Android and desktop devices.</p>
-  </div>
-</div>`;
+  <div class="row m-3 text-center">
+    <div class="col">
+      <h2>Incompatible Browser</h2>
+      <p>Unfortunately, the browser you are using does not support the speech recognition functionality requied by Pronuncio.</p>
+      <p>Pronuncio is currently only supported on the Chrome browser for Android and desktop devices.</p>
+    </div>
+  </div>`;
 
   gameContainer.innerHTML = HTML;
 }
