@@ -63,7 +63,7 @@ Game.prototype.timerDecrement = function() {
 Game.prototype.handleContinueButton = function() {
   hideContinueButton();
   showNextButtons();
-  disableSpeakButton();
+  // disableSpeakButton();
   if (!this.checkIfVoiceAvailable(this.currentSentence.bcp47)) {
     disableRevealPronunciationButton();
   }

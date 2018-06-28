@@ -72,13 +72,13 @@ Player.prototype.handleVoiceInput = function(phrase, phrases) {
     game.handleContinueButton();
   } else if (this.currentScore > 80) {
     drawAttemptString("Pronuncio is slightly confused...");
-    showContinueButton();
+    game.handleContinueButton();
   } else if (this.currentScore > 40) {
     drawAttemptString("Pronuncio is very confused by your words, human.");
-    showContinueButton();
+    game.handleContinueButton();
   } else if (this.currentAttempt <= game.allowedAttempts) {
     drawAttemptString("Pronuncio has no idea what you are talking about.");
-    showContinueButton();
+    game.handleContinueButton();
   } else {
     drawAttemptString("Pronuncio declares this is hopeless. Let's move on.");
     game.handleContinueButton();
@@ -96,9 +96,3 @@ Player.prototype.collectScore = function() {
   this.score += this.currentScore;
   this.currentScore = 0;
 };
-
-// Dev cheat, remove me
-window.addEventListener("keydown", function(e) {
-  console.log("cheating!");
-  showContinueButton();
-});
