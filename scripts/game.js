@@ -111,6 +111,9 @@ Game.prototype.nextQuestion = function() {
 Game.prototype.gameEnded = function() {
   this.addScoreToHighScores();
   buildGameOver(this.player.score, this.getHighScores(10));
+  if (this.zombieMode) {
+    document.body.classList.remove("bg-secondary");
+  }
 };
 
 Game.prototype.addScoreToHighScores = function() {
@@ -211,7 +214,7 @@ Game.prototype.startZombieMode = function() {
   }, 4000);
   game.startZombieChecking();
   hideInputCard();
-  document.body.classList.add("bg-danger");
+  document.body.classList.add("bg-secondary");
 };
 
 Game.prototype.stopZombieMode = function(zombieSpawnIntervalID) {
