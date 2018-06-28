@@ -10,6 +10,9 @@ function Game() {
   this.timer = 30;
   this.timerMax = 30;
   this.timerID;
+  this.zombieIntervalID;
+  this.zombieSpawnIntervalID;
+  this.zombieMode = false;
 }
 
 Game.prototype.createPlayer = function(name) {
@@ -40,6 +43,12 @@ Game.prototype.startGame = function(option, lang) {
     }, 1000);
   }
   this.nextQuestion();
+  // Zombie Mode easter egg
+  var robotHead = document.getElementById("robot-head");
+  robotHead.addEventListener("dblclick", function() {
+    self.startZombieMode();
+    drawAttemptString("Welcome to THE PRONUNCIO OF THE DEAD!");
+  });
 };
 
 Game.prototype.timerDecrement = function() {
@@ -57,6 +66,9 @@ Game.prototype.handleContinueButton = function() {
   disableSpeakButton();
   if (!this.checkIfVoiceAvailable(this.currentSentence.bcp47)) {
     disableRevealPronunciationButton();
+  }
+  if (this.zombieMode) {
+    this.killZombie();
   }
 };
 
@@ -192,4 +204,61 @@ Game.prototype.getHighScores = function(num) {
   });
 
   return scores.slice(0, num);
+};
+
+Game.prototype.startZombieMode = function() {
+  var self = this;
+  this.zombieSpawnIntervalID = window.setInterval(function() {
+    self.spawnZombie();
+  }, 4000);
+  game.startZombieChecking();
+};
+
+Game.prototype.stopZombieMode = function(zombieSpawnIntervalID) {
+  window.clearInterval(zombieSpawnIntervalID);
+};
+
+Game.prototype.spawnZombie = function() {
+  var zombieSpawner = document.getElementById("zombie-spawner");
+  var zombie = document.createElement("div");
+  zombie.classList.add("zombie");
+  zombie.setAttribute(
+    "style",
+    "left: " + Math.random() * (window.innerWidth - 100) + "px"
+  );
+  zombieSpawner.appendChild(zombie);
+};
+
+Game.prototype.checkIfZombieWalkFinished = function() {
+  var self = this;
+  var zombies = document.querySelectorAll(".zombie");
+  var viewportHeight = Math.max(
+    document.documentElement.clientHeight,
+    window.innerHeight
+  );
+  console.log("checking");
+  zombies.forEach(function(zombie) {
+    console.log(zombie.offsetTop);
+    if (zombie.offsetTop > viewportHeight) {
+      console.log("zombie off screen");
+      self.stopZombieChecking(self.zombieIntervalID);
+      self.stopZombieMode(self.zombieSpawnIntervalID);
+    }
+  });
+};
+
+Game.prototype.startZombieChecking = function() {
+  game.zombieIntervalID = window.setInterval(function() {
+    game.checkIfZombieWalkFinished();
+  }, 50);
+};
+
+Game.prototype.stopZombieChecking = function(intervalID) {
+  window.clearInterval(intervalID);
+};
+
+Game.prototype.killZombie = function() {
+  var zombieSpawner = document.getElementById("zombie-spawner");
+  var zombie = document.querySelector(".zombie");
+  zombieSpawner.removeChild(zombie);
 };

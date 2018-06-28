@@ -22,3 +22,21 @@
   margin-top: -6.5px;
   margin-left: -13px;
 }
+
+.zombie {
+  background-image: url("../images/zombie.gif");
+  background-size: 100% 100%;
+  transform: rotate(90deg);
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  animation: walk 30s normal;
+}
+@keyframes walk {
+  0% {
+    top: -20px;
+  }
+  100% {
+    top: 105vh;
+  }
+}

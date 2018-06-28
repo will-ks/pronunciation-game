@@ -93,7 +93,9 @@ function buildLanguagesList(playerName, option, list) {
 }
 
 function buildGame() {
-  var HTML = `<div class="row m-3">
+  var HTML = `
+  <div id="zombie-spawner"></div>
+  <div class="row m-3">
   <div class="col col-4">
   <h1 id="player-name">Name</h1>
   </div>
@@ -141,7 +143,7 @@ function buildGame() {
   </div>
 
   <div class="row m-3">
-  <div class="col text-center col-3"><img src="images/robot-face.svg" alt="Robot face"></div>
+  <div class="col text-center col-3"><img src="images/robot-face.svg" alt="Robot face" id="robot-head"></div>
   <div class="col text-center col-9"><div class="speech-bubble"><p class="p-3 text-light" id="attempts-string"></p></div></div>
   </div>
 
