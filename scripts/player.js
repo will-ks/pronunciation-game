@@ -57,6 +57,7 @@ Player.prototype.handleVoiceInput = function(phrase, phrases) {
   var diff = game.diffStrings(game.currentSentence.sentence, phrase);
   var score = game.calculateDiffScore(game.currentSentence.sentence, phrase);
   drawDiffedStrings(diff);
+  drawBadge(score);
   this.currentScore = score;
   this.currentAttempt++;
 

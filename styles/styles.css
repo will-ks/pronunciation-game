@@ -144,3 +144,10 @@ body {
 .listening {
   opacity: 0.4;
 }
+
+.badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  animation: jackInTheBox 0.5s;
+}

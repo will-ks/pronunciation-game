@@ -312,6 +312,21 @@ function drawDiffedStrings(diff) {
   displayDiv.appendChild(fragment);
 }
 
+function drawBadge(score) {
+  var displayDiv = document.getElementById("input-card-body");
+  var span = document.createElement("span");
+  span.classList.add("badge");
+  if (score > 80) {
+    span.classList.add("badge-success");
+  } else if (score > 30) {
+    span.classList.add("badge-warning");
+  } else {
+    span.classList.add("badge-danger");
+  }
+  span.innerText = score + "%";
+  displayDiv.appendChild(span);
+}
+
 function drawCurrentScore(score) {
   document.querySelector("#similarity-score p").innerText = score;
 }
