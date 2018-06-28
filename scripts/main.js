@@ -16,6 +16,8 @@ function main() {
   gameContainer = document.getElementById("game-container");
   // Start by building splash screen
   buildSplash();
+  // Check if SpeechRecognition API is available
+  checkIfSpeechEnabled();
   // The first time speechSynthesis.getVoices is called on Chrome for Android, it returns no results as voices are loaded asynchronously. Calling it here so it's ready when needed.
   speechSynthesis.getVoices();
 }
@@ -23,8 +25,7 @@ function main() {
 window.addEventListener("load", main);
 
 function buildSplash() {
-  var HTML = `
-  <div class="row m-3 text-center" id="title-screen-title">
+  var HTML = `<div class="row m-3 text-center" id="title-screen-title">
     <div class="col">
       <h1>Pronuncio</h1>
       <img src="images/robot-face.svg" alt="Robot face">
@@ -203,6 +204,24 @@ function buildGameOver(score) {
   });
 }
 
+function buildIncompatibleScreen() {
+  var HTML = `<div class="row m-3 text-center" id="title-screen-title">
+  <div class="col">
+    <h1>Pronuncio</h1>
+    <img src="images/robot-face.svg" alt="Robot face">
+  </div>
+</div>
+<div class="row m-3 text-center">
+  <div class="col">
+    <h2>Incompatible Browser</h2>
+    <p>Unfortunately, the browser you are using does not support the speech recognition functionality requied by Pronuncio.</p>
+    <p>Pronuncio is currently only supported on the Chrome browser for Android and desktop devices.</p>
+  </div>
+</div>`;
+
+  gameContainer.innerHTML = HTML;
+}
+
 function drawFinalScore(score) {
   finalScoreString = document.getElementById("final-score");
   finalScoreString.innerText = "You scored: " + score;
@@ -339,4 +358,18 @@ function hideSpeechBubble() {
 
 function showSpeechBubble() {
   document.querySelector(".speech-bubble").classList.remove("d-none");
+}
+
+function checkIfSpeechEnabled() {
+  if (
+    !(
+      window.SpeechRecognition ||
+      window.webkitSpeechRecognition ||
+      window.mozSpeechRecognition ||
+      window.msSpeechRecognition
+    )
+  ) {
+    // SpeechRecognition API not available in browser
+    buildIncompatibleScreen();
+  }
 }
