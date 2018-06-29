@@ -7,12 +7,18 @@ var languages = [
     sentences: [
       "Pojďme tady žít.",
       "Můžete si tuhle knihu přečíst.",
-      "Nemohu najít mé zavazadlo."
+      "Nemohu najít mé zavazadlo.",
+      "Sedí vedle svého bratra.",
+      "Život je těžký.",
+      "Víš, co máš dělat?"
     ],
     translations: [
       "Let's live here.",
       "You can read this book.",
-      "I can't find my luggage."
+      "I can't find my luggage.",
+      "He's sitting next to his brother.",
+      "Life is hard.",
+      "Do you know what you have to do?"
     ]
   },
   {
@@ -21,12 +27,18 @@ var languages = [
     sentences: [
       "Creo que la decisión es justa.",
       "Bajaron del árbol.",
-      "Hemos dividido el dinero entre los dos."
+      "Hemos dividido el dinero entre los dos.",
+      "Celebramos su cumpleaños con una fiesta.",
+      "¿Tenemos más cerveza?",
+      "Los pandas se alimentan de bambú."
     ],
     translations: [
       "I believe that the decision is just.",
       "They climbed down the tree.",
-      "We divided the money between us."
+      "We divided the money between us.",
+      "We celebrated his birthday with a party.",
+      "Do we have any more beer?",
+      "Pandas feed on bamboo grass."
     ]
   },
   {
@@ -35,12 +47,18 @@ var languages = [
     sentences: [
       "Es gibt keinen Grund zu der Annahme, dass Tom der Dieb ist.",
       "Rutsch mir doch den Buckel runter!",
-      "Nimm es nicht so ernst."
+      "Nimm es nicht so ernst.",
+      "Welches von beiden ist das Teurere?",
+      "Tom ließ sich auf die Couch fallen.",
+      "Das Matterhorn zu besteigen ist schwer."
     ],
     translations: [
       "There's no evidence to suggest that Tom was the thief.",
       "I want you to get off my back.",
-      "Don't take things so seriously."
+      "Don't take things so seriously.",
+      "Which is the more expensive of the two?",
+      "Tom slumped on the couch.",
+      "Climbing the Matterhorn is difficult."
     ]
   },
   {
@@ -49,12 +67,18 @@ var languages = [
     sentences: [
       "Preferirebbe andare allo zoo o andare al cinema?",
       "Mi stavo chiedendo se vi sareste fatte vive oggi.",
-      "Lui produce giocattoli in Cina."
+      "Lui produce giocattoli in Cina.",
+      "Io ho mangiato troppo cibo ieri.",
+      "Il mio ginocchio continua a fare male.",
+      "Forse sai dove sono i miei libri?"
     ],
     translations: [
       "Would you prefer to go to the zoo or go to a movie?",
       "I was wondering if you were going to show up today.",
-      "He manufactures toys in China."
+      "He manufactures toys in China.",
+      "I ate too much food yesterday.",
+      "My knee keeps hurting.",
+      "Maybe you know where my books are?"
     ]
   },
   {
@@ -63,12 +87,18 @@ var languages = [
     sentences: [
       "Hun får altid sin vilje.",
       "Når man taler om solen, så skinner den.",
-      "Taler du fransk hver dag?"
+      "Taler du fransk hver dag?",
+      "Tom ønskede ikke at tage afsted tomhændet.",
+      "Betyder det at du bliver?",
+      "Han er høj og tynd."
     ],
     translations: [
       "She always gets her own way.",
       "Speak of the devil and he is sure to appear.",
-      "Do you speak French every day?"
+      "Do you speak French every day?",
+      "Tom didn't want to leave empty-handed.",
+      "Does that mean you'll stay?",
+      "He's tall and slim."
     ]
   },
   {
@@ -77,12 +107,18 @@ var languages = [
     sentences: [
       "Älä yritä tehdä kahta asiaa kerralla.",
       "Muista, mitä kerroin sinulle!",
-      "Piilotteletko sinä jotakin?"
+      "Piilotteletko sinä jotakin?",
+      "Herrasmies ei sylkisi kadulle.",
+      "Ystäväni on puhelias henkilö.",
+      "He kieltäytyivät."
     ],
     translations: [
       "Don't attempt two things at a time.",
       "Remember what I tell you!",
-      "Are you hiding something?"
+      "Are you hiding something?",
+      "A gentleman would not spit on the street.",
+      "My friend is a talkative person.",
+      "They refused."
     ]
   },
   {
@@ -91,12 +127,18 @@ var languages = [
     sentences: [
       "J'ai fait un rêve bizarre.",
       "Où puis-je changer mon argent?",
-      "Elles veulent juste s'amuser."
+      "Elles veulent juste s'amuser.",
+      "Vous devriez écrire un roman.",
+      "Je me rends chaque jour à l'église.",
+      "Vous pouvez le faire si vous y mettez votre esprit."
     ],
     translations: [
       "I had a weird dream.",
       "Where can I get my money exchanged?",
-      "They just want to have fun."
+      "They just want to have fun.",
+      "You should write a novel.",
+      "I go to church every day.",
+      "You can do it if you put your mind to it."
     ]
   },
   {
@@ -105,12 +147,18 @@ var languages = [
     sentences: [
       "Trebuie să faci ce-ți spun.",
       "Nu mai sunt lemne pentru foc.",
-      "Zâmbetele nu indică întotdeauna bucuria."
+      "Zâmbetele nu indică întotdeauna bucuria.",
+      "Toți au râs la gluma oratorului.",
+      "Ar putea fi îngheț săptămâna viitoare.",
+      "N-am avut timp să mă relaxez."
     ],
     translations: [
       "You must do as I tell you.",
       "There's no more firewood.",
-      "Smiles do not always indicate pleasure."
+      "Smiles do not always indicate pleasure.",
+      "Everyone laughed at the speaker's joke.",
+      "It may freeze next week.",
+      "I didn't have time to relax."
     ]
   },
   {
@@ -119,12 +167,18 @@ var languages = [
     sentences: [
       "Z czego się tak cieszysz?",
       "Ten sklep sprzedaje dzienniki i magazyny.",
-      "Czy Tom ci powiedział gdzie jest impreza?"
+      "Czy Tom ci powiedział gdzie jest impreza?",
+      "Surowo wzbronione.",
+      "Okres ładnej pogody trwał długo.",
+      "Jestem zbyt podekscytowany, by coś jeść."
     ],
     translations: [
       "Why are you so happy?",
       "That shop sells newspapers and magazines.",
-      "Did Tom tell you where the party is?"
+      "Did Tom tell you where the party is?",
+      "Strictly forbidden.",
+      "We have had a long spell of hot weather.",
+      "I'm too excited to eat anything."
     ]
   },
   {
@@ -133,12 +187,18 @@ var languages = [
     sentences: [
       "En Tom acostuma a trucar noies.",
       "Té dues classes al matí i una a l'horabaixa.",
-      "Ara he d'anar a aquella reunió."
+      "Ara he d'anar a aquella reunió.",
+      "L'exèrcit d'en Napoleó ha avançat fins a Moscou.",
+      "Els edificis de fusta es prenen foc fàcilment.",
+      "És hora de que vagis al llit."
     ],
     translations: [
       "Tom is accustomed to calling up girls on the telephone.",
       "He has two classes in the morning and one in the afternoon.",
-      "I need to get to this meeting now."
+      "I need to get to this meeting now.",
+      "Napoleon's army has advanced to Moscow.",
+      "Wooden buildings catch fire easily.",
+      "It's time for you to go to bed."
     ]
   }
 ];
