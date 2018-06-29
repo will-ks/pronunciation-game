@@ -16,9 +16,6 @@ Player.prototype.setName = function(name) {
 };
 
 Player.prototype.handleSpeakButtonClick = function() {
-  if (annyang.isListening()) {
-    this.stopListening();
-  }
   this.startListening(game.currentSentence.bcp47);
 };
 
@@ -91,8 +88,10 @@ Player.prototype.handleVoiceInput = function(phrase, phrases) {
 
   if (game.zombieMode && this.currentScore > 0) {
     game.killZombie();
-    game.handleContinueButton();
-    game.handleNextButton();
+    this.stopListening();
+    window.setTimeout(function() {
+      game.handleNextButton();
+    }, 100);
   }
 };
 
