@@ -151,3 +151,7 @@ body {
   right: 5px;
   animation: jackInTheBox 0.5s;
 }
+
+body {
+  font-size: 1.3rem;
+}
