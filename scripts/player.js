@@ -70,18 +70,23 @@ Player.prototype.handleVoiceInput = function(phrase, phrases) {
 
   if (this.currentScore === 100) {
     drawAttemptString("Pronuncio understands perfectly!");
+    document.getElementById("success-sound").play();
     game.handleContinueButton();
   } else if (this.currentScore > 80) {
     drawAttemptString("Pronuncio is slightly confused...");
+    document.getElementById("success-sound").play();
     game.handleContinueButton();
   } else if (this.currentScore > 40) {
     drawAttemptString("Pronuncio is very confused by your words, human.");
+    document.getElementById("fail-sound").play();
     game.handleContinueButton();
   } else if (this.currentAttempt <= game.allowedAttempts) {
     drawAttemptString("Pronuncio has no idea what you are talking about.");
+    document.getElementById("fail-sound").play();
     game.handleContinueButton();
   } else {
     drawAttemptString("Pronuncio declares this is hopeless. Let's move on.");
+    document.getElementById("fail-sound").play();
     game.handleContinueButton();
   }
 
