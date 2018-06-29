@@ -103,6 +103,7 @@ Game.prototype.nextQuestion = function() {
     enableSpeakButton();
     hideContinueButton();
     hideSpeechBubble();
+    this.player.handleSpeakButtonClick();
   } else {
     this.gameEnded();
   }

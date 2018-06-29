@@ -18,9 +18,8 @@ Player.prototype.setName = function(name) {
 Player.prototype.handleSpeakButtonClick = function() {
   if (annyang.isListening()) {
     this.stopListening();
-  } else {
-    this.startListening(game.currentSentence.bcp47);
   }
+  this.startListening(game.currentSentence.bcp47);
 };
 
 Player.prototype.startListening = function(languageBcp47String) {
