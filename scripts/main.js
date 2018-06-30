@@ -1,17 +1,17 @@
 "use strict";
 
-var game,
-  speakBtn,
-  continueBtn,
-  revealPronunciationBtn,
-  nextBtn,
-  startButton,
-  playAgainButton,
-  gameContainer,
-  finalScoreString,
-  learningModeButton,
-  languagesList,
-  highScoresList;
+var game;
+var speakBtn;
+var continueBtn;
+var revealPronunciationBtn;
+var nextBtn;
+var startButton;
+var playAgainButton;
+var gameContainer;
+var finalScoreString;
+var learningModeButton;
+var languagesList;
+var highScoresList;
 
 function main() {
   gameContainer = document.getElementById("game-container");
@@ -324,8 +324,8 @@ function drawDiffedStrings(diff) {
 }
 
 function drawBadge(score) {
-  var displayDiv = document.getElementById("input-card-body"),
-    span = document.createElement("span");
+  var displayDiv = document.getElementById("input-card-body");
+  var span = document.createElement("span");
   span.classList.add("badge");
   if (score > 80) {
     span.classList.add("badge-success");
