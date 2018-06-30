@@ -19,6 +19,10 @@ Pronuncio was built in one week as a practice project at [Ironhack](http://www.i
   _ Hidden easter egg zombie mode, The Pronuncio of the Dead
 - Local high scores
 
+## Play it
+
+[https://dambusm.github.io/pronunciation-game/](https://dambusm.github.io/pronunciation-game/)
+
 ## To Do
 
 Future developments planned for Pronuncio:
