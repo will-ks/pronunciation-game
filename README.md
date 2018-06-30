@@ -1,6 +1,6 @@
 # # Pronuncio
 
-![Pronuncio robot](images/robot-face.svg)
+<img src="images/robot-face.svg" alt="Pronuncio robot" width="350" height="350">
 
 Pronuncio is a web game, in which the aim is to pronounce sentences in different languages as accurately as possible. It can be played just for fun, or as a learning aid for practicing pronunciation of a language you are learning.
 
