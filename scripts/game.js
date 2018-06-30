@@ -135,10 +135,9 @@ Game.prototype.diffStrings = function(string1, string2) {
   if (!(string1 && string2)) {
     return null;
   }
-  var cleanString1 = this.cleanString(string1);
-  var cleanString2 = this.cleanString(string2);
-
-  var diff = JsDiff.diffWordsWithSpace(cleanString1, cleanString2);
+  var cleanString1 = this.cleanString(string1),
+    cleanString2 = this.cleanString(string2),
+    diff = JsDiff.diffWordsWithSpace(cleanString1, cleanString2);
   return diff;
 };
 
@@ -147,9 +146,9 @@ Game.prototype.calculateDiffScore = function(string1, string2) {
     return null;
   }
 
-  var cleanString1 = this.cleanString(string1);
-  var cleanString2 = this.cleanString(string2);
-  var similarity = dice.coefficient(cleanString1, cleanString2);
+  var cleanString1 = this.cleanString(string1),
+    cleanString2 = this.cleanString(string2),
+    similarity = dice.coefficient(cleanString1, cleanString2);
   return Math.floor(similarity * 100);
 };
 
@@ -160,8 +159,8 @@ Game.prototype.speakSentence = function(sentence, languageBcp47String) {
 };
 
 Game.prototype.getAvailableSpeechSynthesisLanguages = function() {
-  var supported = [];
-  var voices = speechSynthesis.getVoices();
+  var supported = [],
+    voices = speechSynthesis.getVoices();
   voices.forEach(function(voice) {
     supported.push(voice.lang.slice(0, 2));
   });
@@ -223,8 +222,8 @@ Game.prototype.stopZombieMode = function(zombieSpawnIntervalID) {
 };
 
 Game.prototype.spawnZombie = function() {
-  var zombieSpawner = document.getElementById("zombie-spawner");
-  var zombie = document.createElement("div");
+  var zombieSpawner = document.getElementById("zombie-spawner"),
+    zombie = document.createElement("div");
   zombie.classList.add("zombie");
   zombie.setAttribute(
     "style",
@@ -234,12 +233,12 @@ Game.prototype.spawnZombie = function() {
 };
 
 Game.prototype.checkIfZombieWalkFinished = function() {
-  var self = this;
-  var zombies = document.querySelectorAll(".zombie:not(.zombie-dead)");
-  var viewportHeight = Math.max(
-    document.documentElement.clientHeight,
-    window.innerHeight
-  );
+  var self = this,
+    zombies = document.querySelectorAll(".zombie:not(.zombie-dead)"),
+    viewportHeight = Math.max(
+      document.documentElement.clientHeight,
+      window.innerHeight
+    );
   zombies.forEach(function(zombie) {
     if (zombie.offsetTop > viewportHeight - 80) {
       self.stopZombieChecking(self.zombieIntervalID);
@@ -260,8 +259,8 @@ Game.prototype.stopZombieChecking = function(intervalID) {
 };
 
 Game.prototype.killZombie = function() {
-  var zombieSpawner = document.getElementById("zombie-spawner");
-  var zombie = document.querySelector(".zombie");
+  var zombieSpawner = document.getElementById("zombie-spawner"),
+    zombie = document.querySelector(".zombie");
   zombie.classList.add("zombie-dead");
   window.setTimeout(function() {
     zombieSpawner.removeChild(zombie);
