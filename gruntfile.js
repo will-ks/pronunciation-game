@@ -23,9 +23,21 @@ module.exports = function (grunt) {
       }
     }, // concat
 
+    connect: {
+      server: {
+        options: {
+          hostname: 'localhost',
+          port: 3000,
+          base: 'builds',
+          livereload: true
+        }
+      }
+    }, //connect
+
     watch: {
       options: {
-        spawn: false
+        spawn: false,
+        livereload: true
       },
       scripts: {
         files: ['components/scripts/*.js',
@@ -37,5 +49,6 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default', ['concat', 'watch']);
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.registerTask('default', ['concat', 'connect', 'watch']);
 }; //wrapper function

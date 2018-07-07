@@ -14,6 +14,7 @@
   "homepage": "https://github.com/dambusm/pronunciation-game#readme",
   "devDependencies": {
     "grunt": "^1.0.3",
+    "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-watch": "^1.1.0"
   },
   "dependencies": {
