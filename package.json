@@ -1,0 +1,15 @@
+{
+  "name": "pronuncio-game",
+  "version": "0.1.0",
+  "description": "Pronunciation game",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dambusm/pronunciation-game.git"
+  },
+  "author": "Will Schaller",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/dambusm/pronunciation-game/issues"
+  },
+  "homepage": "https://github.com/dambusm/pronunciation-game#readme"
+}
