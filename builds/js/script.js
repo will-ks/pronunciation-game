@@ -220,7 +220,7 @@ function getRandomSentences(num, lang) {
     if (!lang) {
       languageNumber = [Math.floor(Math.random() * languages.length)];
     } else {
-      languageNumber = languages.findIndex(function(item) {
+      languageNumber = languages.findIndex(function (item) {
         return item.name === lang;
       });
     }
@@ -261,7 +261,7 @@ function getRandomSentences(num, lang) {
 
 function getLanguagesList() {
   var languagesList = [];
-  languages.forEach(function(item) {
+  languages.forEach(function (item) {
     languagesList.push(item.name);
   });
   return languagesList.sort();

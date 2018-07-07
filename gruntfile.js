@@ -21,10 +21,21 @@ module.exports = function (grunt) {
         ],
         dest: 'builds/js/script.js'
       }
-    }
+    }, // concat
 
+    watch: {
+      options: {
+        spawn: false
+      },
+      scripts: {
+        files: ['components/scripts/*.js',
+          'builds/*.html', 'builds/styles/*.css']
+      },
+      tasks: ['concat']
+    }
   }); //initConfig
 
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.registerTask('default', ['concat']);
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.registerTask('default', ['concat', 'watch']);
 }; //wrapper function
