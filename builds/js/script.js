@@ -1,4 +1,10 @@
-"use strict";
+'use strict';
+
+/*! pronuncio-game - v0.1.0 - 2018-07-07 */
+
+// -------------------------------
+// Source: components/scripts/data.js
+// -------------------------------
 
 var languages = [
   {
@@ -261,7 +267,9 @@ function getLanguagesList() {
   return languagesList.sort();
 }
 
-"use strict";
+// -------------------------------
+// Source: components/scripts/main.js
+// -------------------------------
 
 var game;
 var speakBtn;
@@ -708,6 +716,10 @@ function showInputCard() {
   document.getElementById("input-sentence").classList.remove("d-none");
 }
 
+// -------------------------------
+// Source: components/scripts/game.js
+// -------------------------------
+
 class Game {
   constructor() {
     this.sentences = [];
@@ -971,6 +983,10 @@ class Game {
     }, 1000);
   }
 }
+
+// -------------------------------
+// Source: components/scripts/player.js
+// -------------------------------
 
 class Player {
   constructor() {
