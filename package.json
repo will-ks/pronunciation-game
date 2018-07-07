@@ -11,5 +11,8 @@
   "bugs": {
     "url": "https://github.com/dambusm/pronunciation-game/issues"
   },
-  "homepage": "https://github.com/dambusm/pronunciation-game#readme"
+  "homepage": "https://github.com/dambusm/pronunciation-game#readme",
+  "devDependencies": {
+    "grunt": "^1.0.3"
+  }
 }
