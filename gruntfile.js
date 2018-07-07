@@ -5,7 +5,7 @@ module.exports = function (grunt) {
 
       options: {
         stripBanners: true,
-        banner: `'use strict';\n\n/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n\n`,
+        banner: `'use strict';\n\n/*! <%= pkg.name %> - v<%= pkg.version %> */\n\n`,
         process: function (src, filepath) {
           return '// -------------------------------\n// Source: ' + filepath + '\n// -------------------------------\n\n' +
             src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
