@@ -1,6 +1,6 @@
 "use strict";
 
-var languages = [
+const languages = [
   {
     name: "Czech",
     bcp47: "cs",
@@ -203,18 +203,18 @@ var languages = [
   }
 ];
 
-var highScores = [];
+const highScores = [];
 
 function getRandomSentences(num, lang) {
-  var chosenSentences = [];
-  var array = [];
+  const chosenSentences = [];
+  const array = [];
   function getSentence() {
     // Get random language, if no language argument specified, else use specified language.
     var languageNumber;
     if (!lang) {
       languageNumber = [Math.floor(Math.random() * languages.length)];
     } else {
-      languageNumber = languages.findIndex(function(item) {
+      languageNumber = languages.findIndex(function (item) {
         return item.name === lang;
       });
     }
@@ -254,8 +254,8 @@ function getRandomSentences(num, lang) {
 }
 
 function getLanguagesList() {
-  var languagesList = [];
-  languages.forEach(function(item) {
+  const languagesList = [];
+  languages.forEach(function (item) {
     languagesList.push(item.name);
   });
   return languagesList.sort();

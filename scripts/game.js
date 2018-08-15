@@ -42,6 +42,7 @@ class Game {
       }, 1000);
     }
     this.nextQuestion();
+
     // Zombie Mode easter egg
     const robotHead = document.getElementById("robot-head");
     robotHead.addEventListener("dblclick", () => {
@@ -49,6 +50,7 @@ class Game {
       drawAttemptString("Welcome to THE PRONUNCIO OF THE DEAD!");
     });
   }
+
 
   timerDecrement() {
     this.timer--;
@@ -116,9 +118,63 @@ class Game {
     }
   }
 
+
+  // --- Score functions
+
+  getHighScores(num) {
+    const scores = highScores.slice(0);
+
+    scores.sort(({ score }, { score }) => score - score);
+
+    return scores.slice(0, num);
+  }
+
   addScoreToHighScores() {
     const scoreObject = { playerName: this.player.name, score: this.player.score };
     highScores.push(scoreObject);
+  }
+  // --- Speech synthesis functions
+
+  getAvailableSpeechSynthesisLanguages() {
+    const supported = [];
+    const voices = speechSynthesis.getVoices();
+    voices.forEach(({ lang }) => {
+      supported.push(lang.slice(0, 2));
+    });
+    return supported;
+  }
+
+  checkIfVoiceAvailable(languageBcp47String) {
+    const supported = this.getAvailableSpeechSynthesisLanguages();
+    if (supported.includes(languageBcp47String)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  speakSentence(sentence, languageBcp47String) {
+    const utterance = new SpeechSynthesisUtterance(sentence);
+    utterance.lang = languageBcp47String;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  // --- String functions ---
+
+  translateString(string, lang) {
+    // Note: This is a temporary method using a disposable free API key. Will eventually be replaced when the app has a backend.
+    const stringURI = encodeURI(string);
+    fetch(
+      `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180627T143038Z.1e878579d0dfe5ce.cace0e83481e4da16a038b62e31825c4764bb8c5&text=${stringURI}&lang=${lang}-en`,
+      {
+        method: "get"
+      }
+    )
+      .then(response => response.json())
+      .then(({ text }) => drawTranslation(text[0]))
+      .catch(err => {
+        //error block
+      });
   }
 
   cleanString(string) {
@@ -152,53 +208,7 @@ class Game {
     return Math.floor(similarity * 100);
   }
 
-  speakSentence(sentence, languageBcp47String) {
-    const utterance = new SpeechSynthesisUtterance(sentence);
-    utterance.lang = languageBcp47String;
-    window.speechSynthesis.speak(utterance);
-  }
-
-  getAvailableSpeechSynthesisLanguages() {
-    const supported = [];
-    const voices = speechSynthesis.getVoices();
-    voices.forEach(({lang}) => {
-      supported.push(lang.slice(0, 2));
-    });
-    return supported;
-  }
-
-  checkIfVoiceAvailable(languageBcp47String) {
-    const supported = this.getAvailableSpeechSynthesisLanguages();
-    if (supported.includes(languageBcp47String)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  translateString(string, lang) {
-    // Note: This is a temporary method using a disposable free API key. Will eventually be replaced when the app has a backend.
-    const stringURI = encodeURI(string);
-    fetch(
-      `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180627T143038Z.1e878579d0dfe5ce.cace0e83481e4da16a038b62e31825c4764bb8c5&text=${stringURI}&lang=${lang}-en`,
-      {
-        method: "get"
-      }
-    )
-      .then(response => response.json())
-      .then(({text}) => drawTranslation(text[0]))
-      .catch(err => {
-        //error block
-      });
-  }
-
-  getHighScores(num) {
-    const scores = highScores.slice(0);
-
-    scores.sort(({score}, {score}) => score - score);
-
-    return scores.slice(0, num);
-  }
+  // --- Zombie mode ---
 
   startZombieMode() {
     const self = this;
@@ -233,7 +243,7 @@ class Game {
       document.documentElement.clientHeight,
       window.innerHeight
     );
-    zombies.forEach(({offsetTop}) => {
+    zombies.forEach(({ offsetTop }) => {
       if (offsetTop > viewportHeight - 80) {
         self.stopZombieChecking(self.zombieIntervalID);
         self.stopZombieMode(self.zombieSpawnIntervalID);
