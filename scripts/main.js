@@ -56,6 +56,13 @@ function buildSplash() {
     </div>
   </div>`;
 
+  if (!isMobileDevice()) {
+    HTML += `
+    <div class="alert alert-info text-center" role="alert">
+      Pronuncio works best on Chrome on Android!
+    </div>`
+  }
+
   gameContainer.innerHTML = HTML;
 
   startButton = document.getElementById("start-button");
@@ -443,4 +450,8 @@ function hideInputCard() {
 
 function showInputCard() {
   document.getElementById("input-sentence").classList.remove("d-none");
+}
+
+function isMobileDevice() {
+  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 }
