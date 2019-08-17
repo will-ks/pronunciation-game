@@ -124,7 +124,7 @@ class Game {
   getHighScores(num) {
     const scores = highScores.slice(0);
 
-    scores.sort(({ score }, { score }) => score - score);
+    scores.sort(({ score: score1 }, { score: score2 }) => score1 - score2);
 
     return scores.slice(0, num);
   }
